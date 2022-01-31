@@ -4,4 +4,4 @@ I'm `Himanshu Gupta` with team member `Abhay, Niharika, Lavanya, Palash, Burhan`
 
 :mailbox: Reach me out!
 
-[![Linkedin Badge](https://img.shields.io/badge/-Himanshu-0e76a8?style=flat&labelColor=0e76a8&logo=linkedin&logoColor=white)](himanshurajeshgupta@gmail.com)
+[![Mail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](himanshurajeshgupta@gmail.com)
