@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import routes from "./routes";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello, <code>Himanshu Gupta</code> and team.
-        </p>
-        <a
-          className="App-link"
-          href="https://github.com/codingtrick/chargeback-calculator-frontend"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Open GitHub Repo
-        </a>
-      </header>
+    <div>
+      <Routes>
+        {routes.map((route, index) => (
+          <Route
+            key={index}
+            path={route.path}
+            element={<route.component />}
+          ></Route>
+        ))}
+      </Routes>
     </div>
   );
-}
+};
 
 export default App;
