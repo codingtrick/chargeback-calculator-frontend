@@ -1,56 +1,53 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 
-const UserInput = (props) => {
-  console.log(props.texttype);
+const LoginComponents = () => {
+  const { state } = useLocation();
   return (
-    <>
-      <input
-        type={props.texttype}
-        id={props.id}
-        name={props.name}
-        placeholder={props.placeholder}
-        required
-      />
-    </>
-  );
-};
-
-// const LoginComponents = () => {
-//   console.log("hello compoents");
-//   return (
-//     <div>
-//       <h1>Hello from Login Components</h1>
-//       <UserInput
-//         texttype={"text"}
-//         id={"username"}
-//         name={"username"}
-//         placeholder={"enter username..."}
-//       />
-
-//       <UserInput
-//         texttype={"password"}
-//         id={"password"}
-//         name={"password"}
-//         placeholder={"enter password..."}
-//       />
-//     </div>
-//   );
-// };
-const ExpINput = (props) => {
-  return (
-    <>
-      <input type={props.type} placeholder={props.placeholder} />
-    </>
-  );
-};
-
-const LoginComponents = (props) => {
-  return (
-    <div>
-      <ExpINput type={"text"} placeholder={"hk"} />
-      <ExpINput type={"text"} placeholder={"hk"} />
-      <ExpINput type={"text"} placeholder={"hk"} />
-      {/* testing */}
+    <div className="container-fluid">
+      <div className="app-wrapper">
+        <div className="d-flex justify-content-center p-3">
+          <h1>Sign In</h1>
+        </div>
+        <div className="button">
+          <input
+            className="form-control input-sm "
+            id="username"
+            name="username"
+            placeholder="User Name"
+          ></input>
+        </div>
+        <div className="button">
+          <input
+            className="form-control input-sm "
+            id="password"
+            name="password"
+            placeholder="Password"
+          ></input>
+        </div>
+        <div className="button p-3">
+          <label>Sign In as a</label>{" "}
+        </div>
+        <div className="button">
+          <div className="row">
+            <div className="col-3 ">
+              <button name="adminbtn" id="adminbtn" className="btn-primary">
+                Admin
+              </button>
+            </div>
+            <div className="col-3">
+              <button className="btn-primary" name="empbtn" id="empbtn">
+                Employee
+              </button>
+            </div>
+            <div className="col-4">
+              <button className="btn-primary" name="custbtn" id="custbtn">
+                Customer
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
