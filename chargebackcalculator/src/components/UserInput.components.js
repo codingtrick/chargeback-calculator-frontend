@@ -1,5 +1,5 @@
 const UserInput = (props) => {
-  const { type, name, id, onChange, placeholder } = props;
+  const { type, name, id, onChange, placeholder, value, status } = props;
   return (
     <>
       {
@@ -20,6 +20,8 @@ const UserInput = (props) => {
           placeholder={placeholder}
           required
           onChange={onChange}
+          value={value}
+          readOnly={props.status}
         />
       }
     </>

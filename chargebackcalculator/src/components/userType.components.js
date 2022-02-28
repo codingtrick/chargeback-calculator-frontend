@@ -12,10 +12,12 @@ const UserTypeComponents = () => {
   // };
 
   const HandleSignUpButton = () => {
-    navigate("/register", { state: values });
+    localStorage.setItem("usertype", JSON.stringify(values));
+    navigate("/login");
   };
   const HandleSignInButton = () => {
-    navigate("/login", { state: values });
+    localStorage.setItem("usertype", JSON.stringify(values));
+    navigate("/signin");
   };
 
   const onChange = (e) => {
@@ -27,43 +29,45 @@ const UserTypeComponents = () => {
       <div className="container-fluid">
         <div className="app-wrapper">
           <h2 className="title">Welcome to Charge Back Calculator</h2>
-
-          <div>
-            <select
-              name="userTypeSelection"
-              className="dropdownC"
-              onChange={(e) => onChange(e)}
+          <form>
+            <div>
+              <select
+                name="userTypeSelection"
+                className="dropdownC"
+                onChange={(e) => onChange(e)}
+                required
+              >
+                <option value="null" className="dropdownC">
+                  --Select Anyone--
+                </option>
+                <option value="Customer" className="dropdownC">
+                  Customer
+                </option>
+                <option value="Employee" className="dropdownC">
+                  Employee
+                </option>
+                <option value="Admin" className="dropdownC">
+                  Admin
+                </option>
+              </select>
+            </div>
+            <button
+              name="regbtn"
+              id="regbtn"
+              className="reg"
+              onClick={() => HandleSignInButton()}
             >
-              <option value="null" className="dropdownC">
-                --Select Anyone--
-              </option>
-              <option value="Customer" className="dropdownC">
-                Customer
-              </option>
-              <option value="Employee" className="dropdownC">
-                Employee
-              </option>
-              <option value="Admin" className="dropdownC">
-                Admin
-              </option>
-            </select>
-          </div>
-          <button
-            name="regbtn"
-            id="regbtn"
-            className="reg"
-            onClick={() => HandleSignUpButton()}
-          >
-            Register
-          </button>
-          <button
-            name="sigbtn"
-            id="sigbtn"
-            className="sig"
-            onClick={() => HandleSignInButton()}
-          >
-            SignUp
-          </button>
+              Login
+            </button>
+            <button
+              name="sigbtn"
+              id="sigbtn"
+              className="sig"
+              onClick={() => HandleSignUpButton()}
+            >
+              Register
+            </button>
+          </form>
         </div>
       </div>
     </>

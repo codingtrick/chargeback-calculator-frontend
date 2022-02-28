@@ -18,6 +18,9 @@ const handleSubmit = (e) => {
 const IssueComponents = () => {
   const [values, setValues] = useState({});
 
+  const state = JSON.parse(localStorage.getItem("login"));
+  console.log(state);
+
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
@@ -28,18 +31,8 @@ const IssueComponents = () => {
       placeholder: "Enter Customer Id",
       name: "customerId",
       label: "Customer Id",
-    },
-    {
-      type: "number",
-      placeholder: "Enter Issue Id",
-      name: "issueId",
-      label: "Issue Id",
-    },
-    {
-      type: "number",
-      placeholder: "Enter Transition Id",
-      name: "transitionId",
-      label: "Transition Id",
+      value: state.UserId,
+      status: true,
     },
     {
       type: "text",
@@ -60,18 +53,6 @@ const IssueComponents = () => {
     //   label: "dropdown",
     //   options: ["dropdown 1", "dropdown 2"],
     // },
-    {
-      type: "datetime-local",
-      placeholder: "Transition Date Time",
-      name: "TransitionDateTime",
-      label: "Enter Transition Date and Time",
-    },
-    {
-      type: "text",
-      placeholder: "Enter Status",
-      name: "status",
-      label: "Enter Status",
-    },
     {
       type: "number",
       placeholder: "Enter Ammount",
@@ -101,9 +82,10 @@ const IssueComponents = () => {
             <div className="row">
               {inputs.map((input, index) => (
                 <div className="col-md-4 col-sm-12" key={index}>
+                  {input.label}
                   <UserInput
                     {...input}
-                    value={values[input.name]}
+                    value={values[input.name] || input.value}
                     onChange={(e) => onChange(e)}
                   />
                 </div>

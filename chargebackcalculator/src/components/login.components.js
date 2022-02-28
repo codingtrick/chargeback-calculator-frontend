@@ -1,52 +1,50 @@
+import axios from "axios";
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useState } from "react";
+const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
 const LoginComponents = () => {
-  const { state } = useLocation();
+  const state = JSON.parse(localStorage.getItem("usertype"));
+  console.log(state.userTypeSelection);
+  const [values, setValues] = useState({});
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    const xdata = Object.fromEntries(data.entries());
+    const x = {
+      UserType: state.userTypeSelection,
+      IsProfileSet: "false",
+    };
+    const finalData = Object.assign(xdata, x);
+    axios.post(baseUrl + "/userHandle/register", finalData).then((r) => {
+      console.log(r);
+      console.log(r.UserDetails);
+      alert(r.data.UserDetails.UserId);
+    });
+  };
+
+  const onChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
+
   return (
     <div className="container-fluid">
       <div className="app-wrapper">
-        <div className="d-flex justify-content-center p-3">
-          <h1>Sign In</h1>
-        </div>
-        <div className="button">
+        <h1 className="text-center">Sign Up</h1>
+        <form onSubmit={handleSubmit}>
           <input
-            className="form-control input-sm "
-            id="username"
-            name="username"
-            placeholder="User Name"
-          ></input>
-        </div>
-        <div className="button">
+            name="Username"
+            placeholder="Mail Id"
+            onChange={(e) => onChange(e)}
+          />
           <input
-            className="form-control input-sm "
-            id="password"
-            name="password"
+            name="Password"
             placeholder="Password"
-          ></input>
-        </div>
-        <div className="button p-3">
-          <label>Sign In as a</label>{" "}
-        </div>
-        <div className="button">
-          <div className="row">
-            <div className="col-3 ">
-              <button name="adminbtn" id="adminbtn" className="btn-primary">
-                Admin
-              </button>
-            </div>
-            <div className="col-3">
-              <button className="btn-primary" name="empbtn" id="empbtn">
-                Employee
-              </button>
-            </div>
-            <div className="col-4">
-              <button className="btn-primary" name="custbtn" id="custbtn">
-                Customer
-              </button>
-            </div>
-          </div>
-        </div>
+            onChange={(e) => onChange(e)}
+          />
+          <button>Submit</button>
+        </form>
       </div>
     </div>
   );

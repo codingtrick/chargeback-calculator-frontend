@@ -1,9 +1,12 @@
+import CheckStatus from "../page/checkStatus";
 import Demo from "../page/demo";
 import Home from "../page/home";
 import Issue from "../page/issue";
 import Login from "../page/login";
 import Register from "../page/register";
+import SignUp from "../page/SignUp";
 import UserType from "../page/userType";
+import ViewIssue from "../page/viewIssue";
 import ViewProfile from "../page/viewProfile";
 
 const routes = [
@@ -46,6 +49,22 @@ const routes = [
     path: "/view-profile",
     component: ViewProfile,
     title: "Profile",
+  },
+  {
+    path: "/signin",
+    component: SignUp,
+    title: "Profile",
+  },
+  {
+    path: "/view-issue",
+    component: ViewIssue,
+    title: "Issue",
+  },
+  ,
+  {
+    path: "/check-status",
+    component: CheckStatus,
+    title: "Issue",
   },
 ];
 
