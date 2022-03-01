@@ -1,14 +1,15 @@
 import React from "react";
+import RegisterCustComponents from "../components/register-cutomer.components";
 import RegisterComponents from "../components/register.components";
 
 const Register = () => {
-  return (
-    <div>
-      <div>
-        <RegisterComponents />
-      </div>
-    </div>
-  );
+  const usertype = JSON.parse(localStorage.getItem("usertype"));
+  switch (usertype.userTypeSelection) {
+    case "Customer":
+      return <RegisterCustComponents />;
+    case "Employee" || "Admin":
+      return <RegisterComponents />;
+  }
 };
 
 export default Register;

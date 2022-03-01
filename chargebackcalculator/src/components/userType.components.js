@@ -5,17 +5,28 @@ import "./css/lavi.css";
 const UserTypeComponents = () => {
   const navigate = useNavigate();
   const [values, setValues] = useState({});
+  const [error, setError] = useState("");
 
   // const handleSubmit = (e) => {
   //   e.preventDefault();
   //   const data = new FormData(e.target);
   // };
 
-  const HandleSignUpButton = () => {
+  const HandleSignUpButton = (e) => {
+    e.preventDefault();
+    if (!Object.keys(values).length) {
+      setError("select something to register");
+      return;
+    }
     localStorage.setItem("usertype", JSON.stringify(values));
     navigate("/login");
   };
-  const HandleSignInButton = () => {
+  const HandleSignInButton = (e) => {
+    e.preventDefault();
+    if (!Object.keys(values).length) {
+      setError("select something to login");
+      return;
+    }
     localStorage.setItem("usertype", JSON.stringify(values));
     navigate("/signin");
   };
@@ -25,8 +36,8 @@ const UserTypeComponents = () => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
   return (
-    <>
-      <div className="container-fluid">
+    <div className="hkBg">
+      <div className="container-fluid ">
         <div className="app-wrapper">
           <h2 className="title">Welcome to Charge Back Calculator</h2>
           <form>
@@ -50,12 +61,13 @@ const UserTypeComponents = () => {
                   Admin
                 </option>
               </select>
+              <span style={{ color: "red" }}>{error}</span>
             </div>
             <button
               name="regbtn"
               id="regbtn"
               className="reg"
-              onClick={() => HandleSignInButton()}
+              onClick={(e) => HandleSignInButton(e)}
             >
               Login
             </button>
@@ -63,14 +75,14 @@ const UserTypeComponents = () => {
               name="sigbtn"
               id="sigbtn"
               className="sig"
-              onClick={() => HandleSignUpButton()}
+              onClick={(e) => HandleSignUpButton(e)}
             >
               Register
             </button>
           </form>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

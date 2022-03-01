@@ -22,6 +22,7 @@ const SignUpComponents = (props) => {
         localStorage.setItem("isLogin", true);
         if (userData.IsProfileSet.split(" ").join("") === "true") {
           navigate("/view-profile");
+          window.location.reload();
         } else {
           navigate("/register");
         }
@@ -50,7 +51,7 @@ const SignUpComponents = (props) => {
   ];
 
   return (
-    <>
+    <div className="hkBg">
       <div className="app-wraper">
         <div className="container" style={{ display: "flex" }}>
           <form onSubmit={handleSubmit}>
@@ -77,7 +78,7 @@ const SignUpComponents = (props) => {
           </form>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

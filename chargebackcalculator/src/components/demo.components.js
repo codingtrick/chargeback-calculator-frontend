@@ -142,9 +142,9 @@ const DemoComponents = () => {
       </div>
       <div className="app-wrapper">
         <div className="contact">
-          <div className="container">
-            <div className="row align-items-center my-5">
-              <div className="col-lg-12">
+          <div class="container">
+            <div class="row align-items-center my-5">
+              <div class="col-lg-12">
                 <div className="Main">
                   <h2 className="d-flex justify-content-center">
                     All Chargeback Details
@@ -207,8 +207,8 @@ const DemoComponents = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-12">
-                <h1 className="font-weight-light">ChargebackDetails</h1>
+              <div class="col-lg-12">
+                <h1 class="font-weight-light">ChargebackDetails</h1>
                 <p>
                   Lorem Ipsum is simply dummy text of the printing and
                   typesetting industry. Lorem Ipsum has been the industry's
@@ -224,9 +224,9 @@ const DemoComponents = () => {
 
       <div className="app-wrapper">
         <div className="home">
-          <div className="container">
-            <div className="row align-items-center my-5">
-              <div className="col-lg-12">
+          <div class="container">
+            <div class="row align-items-center my-5">
+              <div class="col-lg-12">
                 <div className="Main">
                   <h2 className="d-flex justify-content-center">
                     Chargeback Details
@@ -271,8 +271,8 @@ const DemoComponents = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-12">
-                <h1 className="font-weight-light">Chargebackreportdet page</h1>
+              <div class="col-lg-12">
+                <h1 class="font-weight-light">Chargebackreportdet page</h1>
                 <p>
                   Lorem Ipsum is simply dummy text of the printing and
                   typesetting industry. Lorem Ipsum has been the industry's
@@ -288,9 +288,9 @@ const DemoComponents = () => {
 
       <div className="app-wrapper">
         <div className="home">
-          <div className="container">
-            <div className="row align-items-center my-5">
-              <div className="col-lg-12">
+          <div class="container">
+            <div class="row align-items-center my-5">
+              <div class="col-lg-12">
                 <div className="Main">
                   <h2 className="d-flex justify-content-center">
                     Employee Dashboard
@@ -345,8 +345,8 @@ const DemoComponents = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-12">
-                <h1 className="font-weight-light">Home page</h1>
+              <div class="col-lg-12">
+                <h1 class="font-weight-light">Home page</h1>
                 <p>
                   Lorem Ipsum is simply dummy text of the printing and
                   typesetting industry. Lorem Ipsum has been the industry's
