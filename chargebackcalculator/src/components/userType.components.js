@@ -102,6 +102,9 @@ const UserTypeComponents = () => {
                         onChange={(e) => onChange(e)}
                         required
                       >
+                        <option value="null" className="">
+                          --Select Anyone--
+                        </option>
                         <option value="Customer" className="">
                           Customer
                         </option>
