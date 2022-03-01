@@ -7,7 +7,9 @@ const Register = () => {
   switch (usertype.userTypeSelection) {
     case "Customer":
       return <RegisterCustComponents />;
-    case "Employee" || "Admin":
+    case "Employee":
+      return <RegisterComponents />;
+    case "Admin":
       return <RegisterComponents />;
   }
 };

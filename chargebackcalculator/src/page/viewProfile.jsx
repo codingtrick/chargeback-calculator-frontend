@@ -7,7 +7,9 @@ const ViewProfile = () => {
   switch (usertype.userTypeSelection) {
     case "Customer":
       return <ViewProfileCustComponents />;
-    case "Employee" || "Admin":
+    case "Employee":
+      return <ViewProfileComponents />;
+    case "Admin":
       return <ViewProfileComponents />;
   }
   return (

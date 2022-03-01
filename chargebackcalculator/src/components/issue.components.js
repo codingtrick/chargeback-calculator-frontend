@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 import UserInput from "./UserInput.components";
@@ -23,6 +23,18 @@ const IssueComponents = () => {
 
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
+  };
+
+  const loginData = JSON.parse(localStorage.getItem("login"));
+  const [namevalues, namesetValues] = useState({});
+  useEffect(() => {
+    loadCustomer();
+  }, []);
+
+  const loadCustomer = async () => {
+    const res = await axios.get(baseUrl + "/customer/" + loginData.UserId);
+    console.log(res.data);
+    namesetValues(res.data);
   };
 
   const inputs = [
@@ -75,6 +87,27 @@ const IssueComponents = () => {
 
   return (
     <div className="app-wraper">
+      <div className="card">
+        <div className="card-body">
+          <div className="d-flex flex-column align-items-center text-center">
+            <img
+              src="https://bootdey.com/img/Content/avatar/avatar7.png"
+              alt="Admin"
+              className="rounded-circle"
+              width="150"
+            ></img>
+            <div className="mt-3">
+              <h4>{namevalues.CustomerName}</h4>
+              <p className="text-secondary mb-1">
+                <b>Cust Id:</b> {namevalues.CustomerId}
+              </p>
+              <p className="text-secondary mb-1">
+                <b>Acc Type:</b> {namevalues.BankAccountType}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="container" style={{ display: "flex" }}>
         <form onSubmit={handleSubmit}>
           <div className="card" style={{ padding: "10px" }}>

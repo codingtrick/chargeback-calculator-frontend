@@ -13,7 +13,27 @@ const TopBar = () => {
   const data = JSON.parse(localStorage.getItem("usertype")).userTypeSelection;
   return (
     <>
-      <ul className="topB fixed-top">
+      <section className="home-section" style={{ height: "10px" }}>
+        <nav>
+          <div className="sidebar-button">
+            <i className="bx bx-menu fa fa-menu sidebarBtn"></i>
+            <span className="dashboard">{data} Panel</span>
+          </div>
+          <div className="profile-details">
+            <img
+              src={"https://bootdey.com/img/Content/avatar/avatar7.png"}
+              alt=""
+            ></img>
+            <span className="admin_name">
+              <button className="btn" onClick={logout}>
+                Logout
+              </button>
+            </span>
+            <i className="bx bx-chevron-down fa fa-chevron-down"></i>
+          </div>
+        </nav>
+      </section>
+      {/* <ul className="topB fixed-top">
         <li>
           <a className="active" href="#home">
             Cargeback Dashboard for {data}
@@ -27,7 +47,7 @@ const TopBar = () => {
             Logout
           </button>
         </li>
-      </ul>
+      </ul> */}
     </>
   );
 };

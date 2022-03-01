@@ -18,41 +18,170 @@ const ViewProfileComponents = (props) => {
     setValues(res.data);
   };
 
+  const CustomerId = JSON.parse(localStorage.getItem("login")).UserId;
+  useEffect(() => {
+    loadData();
+  }, []);
+  const [issuevalues, issuesetValues] = useState([]);
+  const loadData = async () => {
+    const res = await axios.get(baseUrl + "/issue");
+    console.log(res.data);
+    issuesetValues(res.data);
+  };
+
   return (
     <>
-      <div className="card">
-        <h3 className="text-center">{values.EmpName}'s Profile</h3>
-        <div className="card-body">
-          <div className="row">
-            <div className="col-md-6">
-              Employee Id: <b>{values.EmpMailId}</b>
+      <div className="container">
+        <div className="main-body">
+          <div className="row gutters-sm">
+            <div className="col-md-4 mb-3">
+              <div className="card">
+                <div className="card-body">
+                  <div className="d-flex flex-column align-items-center text-center">
+                    <img
+                      src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                      alt="Admin"
+                      className="rounded-circle"
+                      width="150"
+                    ></img>
+                    <div className="mt-3">
+                      <h4>{values.EmpName}</h4>
+                      <p className="text-secondary mb-1">
+                        <b>Employee Id:</b> {state.UserId}
+                      </p>
+                      <p className="text-secondary mb-1">
+                        <b>Acc Type:</b> {values.EmpMailId}
+                      </p>
+                      <p className="text-muted font-size-sm">
+                        <b>Address:</b> {values.PermanentAddress}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="col-md-6">
-              Personal Mail Id: <b>{values.EmpPersonalMailId}</b>
+            <div className="col-md-8">
+              <div className="card mb-3">
+                <div className="card-body">
+                  <div className="row">
+                    <div className="col-sm-3">
+                      <h6 className="mb-0">Customer ID</h6>
+                    </div>
+                    <div className="col-sm-9 text-secondary">
+                      {values.EmpID}
+                    </div>
+                  </div>
+                  <hr></hr>
+                  <div className="row">
+                    <div className="col-sm-3">
+                      <h6 className="mb-0">Email</h6>
+                    </div>
+                    <div className="col-sm-9 text-secondary">
+                      {state.Username}
+                    </div>
+                  </div>
+                  {/* <div className="row">
+                    <div className="col-sm-3">
+                      <h6 className="mb-0">Phone</h6>
+                    </div>
+                    <div className="col-sm-9 text-secondary">
+                      (+91) {values.}
+                    </div>
+                  </div> */}
+                  {/* <hr /> */}
+                  {/* <div className="row">
+                    <div className="col-sm-3">
+                      <h6 className="mb-0">Account No.</h6>
+                    </div>
+                    <div className="col-sm-9 text-secondary">
+                      {values.BankAccountNo}
+                    </div>
+                  </div> */}
+                  <hr></hr>
+                  {/* <div className="row">
+                    <div className="col-sm-3">
+                      <h6 className="mb-0">IFSC</h6>
+                    </div>
+                    <div className="col-sm-9 text-secondary">BKID0007275</div>
+                  </div>
+                  <hr></hr> */}
+                  <div className="row">
+                    <div className="col-sm-3">
+                      <h6 className="mb-0">City</h6>
+                    </div>
+                    <div className="col-sm-9 text-secondary">{values.City}</div>
+                  </div>
+                  <hr></hr>
+                  <div className="row">
+                    <div className="col-sm-3">
+                      <h6 className="mb-0">State</h6>
+                    </div>
+                    <div className="col-sm-9 text-secondary">
+                      {values.State}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="col-md-6">
-              date Of Birth: <b>{values.DOB}</b>
-            </div>
-            <div className="col-md-6">
-              date Of Joining: <b>{values.DOJ}</b>
-            </div>
-            <div className="col-md-6">
-              Permanent Address: <b>{values.PermanentAddress}</b>
-            </div>
-            <div className="col-md-6">
-              City: <b>{values.City}</b>
-            </div>
-            <div className="col-md-6">
-              State: <b>{values.State}</b>
-            </div>
-            <div className="col-md-6">
-              Country: <b>{values.Country}</b>
-            </div>
-            <div className="col-md-6">
-              Designation: <b>{values.Designation}</b>
-            </div>
-            <div className="col-md-6">
-              Salary: <b>{values.Salary}</b>
+          </div>
+          <div className="row gutters-sm">
+            <div className="col-md-12">
+              <div className="row gutters-sm">
+                <div className="col-sm-6 mb-3">
+                  <div className="card h-100">
+                    <div className="card-body">
+                      <h6 className="d-flex align-items-center mb-3">
+                        Profile Snapshots
+                      </h6>
+                      <div className="row">
+                        <div className="col-md-6">
+                          <p className="snap-high">Acc Open Date</p>
+                          <p className="snap-nor">{values.DOJ}</p>
+                        </div>
+                        <div className="col-md-6">
+                          <p className="snap-high">Mobile No</p>
+                          <p className="snap-nor">{values.MobileNumber}</p>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-md-6">
+                          <p className="snap-high">Date of Birth</p>
+                          <p className="snap-nor">{values.DOB}</p>
+                        </div>
+                        <div className="col-md-6">
+                          <p className="snap-high">Country</p>
+                          <p className="snap-nor">{values.Country}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-sm-6 mb-3">
+                  <div className="card h-100">
+                    <div className="card-body">
+                      <h6 className="d-flex align-items-center mb-3">
+                        Recent Activity
+                      </h6>
+                      <table className="table">
+                        <tr>
+                          <th>S.No</th>
+                          <th>Issue Id</th>
+                          <th>Ammount</th>
+                          <th>Status</th>
+                        </tr>
+                        {issuevalues.map((value, index) => (
+                          <tr key={index}>
+                            <td>{index + 1}</td>
+                            <td>{value.IssueId}</td>
+                            <td>{value.Ammount}</td>
+                            <td>{value.Status}</td>
+                          </tr>
+                        ))}
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

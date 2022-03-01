@@ -22,6 +22,7 @@ const UserInput = (props) => {
           onChange={onChange}
           value={value}
           readOnly={props.status}
+          required
         />
       }
     </>

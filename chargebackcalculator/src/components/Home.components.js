@@ -134,14 +134,20 @@ const HomeComponents = () => {
           <div className="row">
             <div className="col-lg-4 col-md-6">
               <div className="single-how-it-works">
-                {/* <img alt="images" src={require("../assets/how-it-works/how-it-work1.png")} /> */}
+                <img
+                  alt="images"
+                  src={require("../assets/how-it-works/how-it-work1.png")}
+                />
                 <h3>1. Register/Login </h3>
                 <p>Register/Login using your Customer Id and Password </p>
               </div>
             </div>
             <div className="col-lg-4 col-md-6">
               <div className="single-how-it-works">
-                {/* <img alt="images" src={require("../assets/how-it-works/how-it-work2.png")} /> */}
+                <img
+                  alt="images"
+                  src={require("../assets/how-it-works/how-it-work2.png")}
+                />
                 <h3>2. Apply for Chargeback</h3>
                 <p>
                   Apply for chargeback by providing all the necessary details.
@@ -150,7 +156,10 @@ const HomeComponents = () => {
             </div>
             <div className="col-lg-4 col-md-6">
               <div className="single-how-it-works">
-                {/* <img alt="images" src={require("../assets/how-it-works/how-it-work3.png")} /> */}
+                <img
+                  alt="images"
+                  src={require("../assets/how-it-works/how-it-work3.png")}
+                />
                 <h3>3. Verification</h3>
                 <p>
                   Our team will verify will verify information provided by you.
@@ -159,14 +168,20 @@ const HomeComponents = () => {
             </div>
             <div className="col-lg-4 col-md-6">
               <div className="single-how-it-works">
-                {/* <img alt="images" src={require("../assets/how-it-works/how-it-work4.png")} /> */}
+                <img
+                  alt="images"
+                  src={require("../assets/how-it-works/how-it-work4.png")}
+                />
                 <h3>4. Chargeback Conclusion</h3>
                 <p>Our team will update status of chargeback.</p>
               </div>
             </div>
             <div className="col-lg-4 col-md-6">
               <div className="single-how-it-works">
-                {/* <img alt="images" src={require("../assets/how-it-works/how-it-work5.png")} /> */}
+                <img
+                  alt="images"
+                  src={require("../assets/how-it-works/how-it-work5.png")}
+                />
                 <h3>5. Receive Acceptance/Decline</h3>
                 <p>
                   Successful = Amount Received <br></br>Unsuccessful = Decline
@@ -176,7 +191,10 @@ const HomeComponents = () => {
             </div>
             <div className="col-lg-4 col-md-6">
               <div className="single-how-it-works">
-                {/* <img alt="images" src={require("../assets/how-it-works/how-it-work6.png")} /> */}
+                <img
+                  alt="images"
+                  src={require("../assets/how-it-works/how-it-work6.png")}
+                />
                 <h3>6. Enjoy Shopping</h3>
                 <p>Enjoy using our banking facility for doing transaction.</p>
               </div>

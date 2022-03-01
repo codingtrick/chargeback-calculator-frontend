@@ -6,6 +6,7 @@ import Login from "../page/login";
 import Register from "../page/register";
 import SignUp from "../page/SignUp";
 import UserType from "../page/userType";
+import ViewEmployees from "../page/ViewEmployees";
 import ViewIssue from "../page/viewIssue";
 import ViewProfile from "../page/viewProfile";
 
@@ -64,6 +65,11 @@ const routes = [
   {
     path: "/check-status",
     component: CheckStatus,
+    title: "Issue",
+  },
+  {
+    path: "/view-employee",
+    component: ViewEmployees,
     title: "Issue",
   },
 ];

@@ -41,109 +41,121 @@ const RegisterCustComponents = () => {
   return (
     <div className="container-fluid">
       <div className="app-wrapper">
-        <h2 className="d-flex justify-content-center ">
-          Registration Customer Form
-        </h2>
-        <form onSubmit={handleSubmit}>
-          <div className="row p-2">
-            <div className="col-5">
-              {state.UserType + " ID"}
-              <input
-                className="form-control input-sm"
-                placeholder={state.UserType + " ID"}
-                value={state.UserId}
-                name="CustomerId"
-                onChange={(e) => onChange(e)}
-                readOnly
-              />
-            </div>
-            <div className="col-5">
-              {state.UserType + " Name"}
-              <input
-                className="form-control input-sm"
-                placeholder={state.UserType + " Name"}
-                name="CustomerName"
-                onChange={(e) => onChange(e)}
-              />
-            </div>
-            <div className="col-5">
-              Mail Id
-              <input
-                className="form-control input-sm"
-                placeholder="Personal Mail Id"
-                value={state.Username}
-                onChange={(e) => onChange(e)}
-                readOnly
-              />
-            </div>
-            <div className="col-5">
-              Date Of Birth
-              <input
-                type={"datetime-local"}
-                className="form-control input-sm"
-                placeholder="Date Of Birth"
-                onChange={(e) => onChange(e)}
-                name="DOB"
-              />
-            </div>
-            <div className="col-5">
-              <div className="form-group">
-                Permanent Address
+        <div className="card p-4">
+          <h2 className="d-flex justify-content-center ">
+            Registration Customer Form
+          </h2>
+          <form onSubmit={handleSubmit}>
+            <div className="row p-2 justify-content-center">
+              <div className="col-5">
+                {state.UserType + " ID"}
                 <input
-                  type="text"
+                  required
                   className="form-control input-sm"
-                  placeholder="Permanent Address"
+                  placeholder={state.UserType + " ID"}
+                  value={state.UserId}
+                  name="CustomerId"
                   onChange={(e) => onChange(e)}
-                  name="CustomerAddress"
+                  readOnly
                 />
               </div>
-            </div>
-            <div className="col-5">
-              Account Type
-              <input
-                type="text"
-                className="form-control input-sm"
-                placeholder="eg. Saving"
-                onChange={(e) => onChange(e)}
-                name="BankAccountType"
-              />
-            </div>
-            <div className="col-5">
-              Bank Branch
-              <input
-                className="form-control input-sm"
-                placeholder="eg. Vakola"
-                type={"text"}
-                onChange={(e) => onChange(e)}
-                name="BankAccountBranch"
-              />
-            </div>
-            <div className="col-5">
-              City
-              <input
-                className="form-control input-sm"
-                placeholder="City"
-                type={"text"}
-                onChange={(e) => onChange(e)}
-                name="BankCity"
-              />
-            </div>
+              <div className="col-5">
+                {state.UserType + " Name"}
+                <input
+                  required
+                  className="form-control input-sm"
+                  placeholder={state.UserType + " Name"}
+                  name="CustomerName"
+                  onChange={(e) => onChange(e)}
+                />
+              </div>
+              <div className="col-5">
+                Mail Id
+                <input
+                  required
+                  className="form-control input-sm"
+                  placeholder="Personal Mail Id"
+                  value={state.Username}
+                  onChange={(e) => onChange(e)}
+                  readOnly
+                />
+              </div>
+              <div className="col-5">
+                Date Of Birth
+                <input
+                  required
+                  type={"datetime-local"}
+                  className="form-control input-sm"
+                  placeholder="Date Of Birth"
+                  onChange={(e) => onChange(e)}
+                  name="DOB"
+                />
+              </div>
+              <div className="col-5">
+                <div className="form-group">
+                  Permanent Address
+                  <input
+                    required
+                    type="text"
+                    className="form-control input-sm"
+                    placeholder="Permanent Address"
+                    onChange={(e) => onChange(e)}
+                    name="CustomerAddress"
+                  />
+                </div>
+              </div>
+              <div className="col-5">
+                Account Type
+                <input
+                  required
+                  type="text"
+                  className="form-control input-sm"
+                  placeholder="eg. Saving"
+                  onChange={(e) => onChange(e)}
+                  name="BankAccountType"
+                />
+              </div>
+              <div className="col-5">
+                Bank Branch
+                <input
+                  required
+                  className="form-control input-sm"
+                  placeholder="eg. Vakola"
+                  type={"text"}
+                  onChange={(e) => onChange(e)}
+                  name="BankAccountBranch"
+                />
+              </div>
+              <div className="col-5">
+                City
+                <input
+                  required
+                  className="form-control input-sm"
+                  placeholder="City"
+                  type={"text"}
+                  onChange={(e) => onChange(e)}
+                  name="BankCity"
+                />
+              </div>
 
-            <div className="col-5">
-              Bank State
-              <input
-                type={"text"}
-                className="form-control input-sm"
-                placeholder="State"
-                onChange={(e) => onChange(e)}
-                name="BankState"
-              />
+              <div className="col-5">
+                Bank State
+                <input
+                  required
+                  type={"text"}
+                  className="form-control input-sm"
+                  placeholder="State"
+                  onChange={(e) => onChange(e)}
+                  name="BankState"
+                />
+              </div>
+              <div className="col-5"></div>
             </div>
-          </div>
-          <div className="d-flex justify-content-center p-2">
-            <button className="btn btn-primary">Sign in</button>
-          </div>
-        </form>
+            <div className="d-flex justify-content-center p-2">
+              <button className="btn btn-primary">Save Profile</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

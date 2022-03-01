@@ -51,34 +51,54 @@ const SignUpComponents = (props) => {
   ];
 
   return (
-    <div className="hkBg">
-      <div className="app-wraper">
-        <div className="container" style={{ display: "flex" }}>
-          <form onSubmit={handleSubmit}>
-            <div className="card" style={{ padding: "10px" }}>
-              <h1 className="text-center">Log IN</h1>
-              <div className="row">
-                {inputs.map((input, index) => (
-                  <div className="col-md-4 col-sm-12" key={index}>
-                    <UserInput
-                      {...input}
-                      value={values[input.name]}
-                      onChange={(e) => onChange(e)}
-                    />
-                  </div>
-                ))}
+    <>
+      <div className="login-area">
+        <div className="container">
+          <div className="app-wrapper">
+            <div className="row m-0">
+              <div className="col-md-12 col-lg-12">
+                <div className="d-flex justify-content-center p-3">
+                  <h1 className="page-title">Sign In</h1>
+                </div>
               </div>
-              <button
-                className=" btn btn-primary"
-                style={{ width: "30%", margin: "0 auto" }}
-              >
-                Submit
-              </button>
             </div>
-          </form>
+            <div className="row m-0">
+              <div className="col-md-12 col-lg-12 justify-content-center">
+                <div className="login-container-wrapper clearfix">
+                  <div className="tab-content">
+                    <form
+                      onSubmit={handleSubmit}
+                      className="form-horizontal login-form"
+                    >
+                      {inputs.map((input, index) => (
+                        <div className="col-md-12 col-sm-12" key={index}>
+                          <div className="form-group relative">
+                            <UserInput
+                              className="form-control input-lg"
+                              {...input}
+                              value={values[input.name]}
+                              onChange={(e) => onChange(e)}
+                            />
+                          </div>
+                        </div>
+                      ))}
+                      <div className="form-group d-flex justify-content-center">
+                        <button
+                          className="btn btn-success btn-lg btn-block"
+                          type="submit"
+                        >
+                          Login
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
