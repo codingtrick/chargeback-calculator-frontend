@@ -15,6 +15,10 @@ const SignUpComponents = (props) => {
     axios
       .post(baseUrl + "/userhandle/login", Object.fromEntries(data.entries()))
       .then((r) => {
+        if (r.data.isSuccess === false) {
+          alert("Enter Correct Username or Password");
+          return;
+        }
         console.log(r);
         const userData = r.data.UserDetails;
         console.log(userData);
@@ -26,6 +30,9 @@ const SignUpComponents = (props) => {
         } else {
           navigate("/register");
         }
+      })
+      .catch((e) => {
+        alert("Enter Correct Username or Password");
       });
   };
 

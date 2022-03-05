@@ -177,20 +177,24 @@ const ViewProfileCustComponents = (props) => {
                         Recent Activity
                       </h6>
                       <table className="table">
-                        <tr>
-                          <th>S.No</th>
-                          <th>Issue Id</th>
-                          <th>Ammount</th>
-                          <th>Status</th>
-                        </tr>
-                        {issuevalues.map((value, index) => (
-                          <tr key={index}>
-                            <td>{index + 1}</td>
-                            <td>{value.IssueId}</td>
-                            <td>{value.Ammount}</td>
-                            <td>{value.Status}</td>
+                        <thead>
+                          <tr>
+                            <th>S.No</th>
+                            <th>Issue Id</th>
+                            <th>Ammount</th>
+                            <th>Status</th>
                           </tr>
-                        ))}
+                        </thead>
+                        <tbody>
+                          {issuevalues.map((value, index) => (
+                            <tr key={index}>
+                              <td>{index + 1}</td>
+                              <td>{value.IssueId}</td>
+                              <td>{value.Ammount}</td>
+                              <td>{value.Status}</td>
+                            </tr>
+                          ))}
+                        </tbody>
                       </table>
                     </div>
                   </div>

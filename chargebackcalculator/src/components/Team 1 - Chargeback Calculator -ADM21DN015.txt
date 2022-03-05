@@ -1,0 +1,4765 @@
+import App from "../App"
+
+File Structure:
+    src/
+        assets/
+            how-it-works/
+                how-it-works1.png
+                how-it-works2.png
+                how-it-works3.png
+                how-it-works4.png
+                how-it-works5.png
+                how-it-works6.png
+            cc.jpeg
+            features4.jpg 
+            logo.png
+            main-banner2.jpg 
+            profile.jpeg
+            team1.jpg
+            team2.jpg
+            team3.jpg
+        components/
+            css/
+                Home.css    
+                sidebar.css
+                topbar.css
+            checkstatus.components.js
+            home.components.js
+            issue.components.js
+            login.components.js
+            register-customer.components.js
+            register.components.js
+            sidebar.components.js
+            sign-up.components.js
+            topbar.components.js
+            UserInput.components.js
+            userType.components.js
+            ViewEmployee.components.js
+            viewProfile.components.jsx
+            viewProfileCustomer.components.js
+        page/
+            css/
+                layout.css
+            checkstatus.jsx
+            home.jsx
+            issue.jsx
+            layout.jsx
+            login.jsx
+            register.jsx
+            SignUp.jsx
+            userType.jsx
+            ViewEmployee.jsx
+            viewIssue.jsx
+            viewProfile.jsx
+        routes/
+            index.jsx
+        app.css
+        app.js
+        index.js
+        proxysetUp.js
+        .env
+
+<-------------------------------------------------------------------------------------------------------------------->
+        
+App.js 
+
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+
+import routes from "./routes";
+import "./app.css";
+import Layout from "./page/layout";
+const App = () => {
+  return (
+    <div>
+      <Layout>
+        <Routes>
+          {routes.map((route, index) => (
+            <Route
+              key={index}
+              path={route.path}
+              element={<route.component />}
+            ></Route>
+          ))}
+        </Routes>
+      </Layout>
+    </div>
+  );
+};
+
+export default App;
+
+
+index.js 
+
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import App from "./App";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
+
+ReactDOM.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>,
+  document.getElementById("root")
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+
+
+proxysetUp.js 
+
+
+const { createProxyMiddleware } = require("http-proxy-middleware");
+
+module.exports = (app) => {
+  app.use(
+    createProxyMiddleware("/api/issue", {
+      target: "https://localhost:44337/",
+      changeOrigin: true,
+    })
+  );
+};
+
+
+.env 
+
+REACT_APP_API_BASE_URL="https://localhost:44337/api"
+
+
+---------------------------------------------------------------------------------------------------------------
+
+
+routes/index.js 
+
+
+import CheckStatus from "../page/checkStatus";
+import Demo from "../page/demo";
+import Home from "../page/home";
+import Issue from "../page/issue";
+import Login from "../page/login";
+import Register from "../page/register";
+import SignUp from "../page/SignUp";
+import UserType from "../page/userType";
+import ViewEmployees from "../page/ViewEmployees";
+import ViewIssue from "../page/viewIssue";
+import ViewProfile from "../page/viewProfile";
+
+const routes = [
+  {
+    path: "/",
+    component: Home,
+    title: "Home:ChargeBack Calcuator",
+  },
+  {
+    path: "/home",
+    component: Home,
+    title: "Home:ChargeBack Calcuator",
+  },
+  {
+    path: "/demo",
+    component: Demo,
+    title: "Demo:ChargeBack Calcuator",
+  },
+  {
+    path: "/userselection",
+    component: UserType,
+    title: "User Selection",
+  },
+  {
+    path: "/issue",
+    component: Issue,
+    title: "Issue Page",
+  },
+  {
+    path: "/login",
+    component: Login,
+    title: "Login",
+  },
+  {
+    path: "/register",
+    component: Register,
+    title: "Issue Page",
+  },
+  {
+    path: "/view-profile",
+    component: ViewProfile,
+    title: "Profile",
+  },
+  {
+    path: "/signin",
+    component: SignUp,
+    title: "Profile",
+  },
+  {
+    path: "/view-issue",
+    component: ViewIssue,
+    title: "Issue",
+  },
+  ,
+  {
+    path: "/check-status",
+    component: CheckStatus,
+    title: "Issue",
+  },
+  {
+    path: "/view-employee",
+    component: ViewEmployees,
+    title: "Issue",
+  },
+];
+
+export default routes;
+
+
+page/css/layout.css
+
+.main {
+    width: 100%;
+    display: flex;
+    height: 100%;
+  }
+  
+  .main ul {
+    margin: 0;
+    padding: 20px;
+  }
+  
+  .main .containerxy {
+    box-sizing: border-box;
+    overflow-y: scroll;
+    margin: calc(52px + 0px) 0px 0px calc(17% + 0px);
+    width: 100%;
+    padding: 10px;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #efefef;
+    border-radius: 20px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #efefef;
+  }
+
+--------------------------------------------------------------------------------------------------------
+
+page/
+
+checkstatus.jsx 
+
+import React from "react";
+import CheckStatusComponents from "../components/checkstatus.components";
+
+const CheckStatus = () => {
+  return (
+    <>
+      <CheckStatusComponents />
+    </>
+  );
+};
+
+export default CheckStatus;
+
+
+home.jsx 
+
+
+import React from "react";
+import HomeComponents from "../components/Home.components";
+
+const Home = () => {
+  return (
+    <>
+      <HomeComponents />
+    </>
+  );
+};
+
+export default Home;
+
+
+issue.jsx
+
+import React from "react";
+import IssueComponents from "../components/issue.components";
+
+const Issue = () => {
+  return (
+    <div>
+      <div>
+        <IssueComponents />
+      </div>
+    </div>
+  );
+};
+
+export default Issue;
+
+
+layout.jsx
+
+import React from "react";
+import Sidebar from "../components/sidebar.components";
+import TopBar from "../components/topbar.components";
+// import "./css/layout.css";
+import "../components/css/home.css";
+const Layout = (props) => {
+  const isLogin = localStorage.getItem("isLogin");
+
+  switch (isLogin) {
+    case "true":
+      return (
+        <>
+          <div className="container-fluid">
+            <div className="row m-0">
+              <div className="col-md-3 col-sm-3 col-lg-3">
+                <Sidebar />
+              </div>
+              <div className="col-md-9 col-sm-9 col-lg-9">
+                <div className="row m-0">
+                  <div className="col-md-12 col-sm-12 col-lg-12">
+                    <TopBar />
+                  </div>
+                </div>
+                <div className="row m-0">
+                  <div className="col-md-12 col-sm-12 col-lg-12">
+                    <main className="main">
+                      <div className="containerxy">{props.children}</div>
+                    </main>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* <TopBar />
+          <Sidebar />
+          <main className="main">
+            <div className="containerxy">{props.children}</div>
+          </main> */}
+        </>
+      );
+
+    default:
+      return (
+        <>
+          <main>
+            <div>{props.children}</div>
+          </main>
+        </>
+      );
+  }
+};
+
+export default Layout;
+
+
+login.jsx
+
+import React from "react";
+import LoginComponents from "../components/login.components";
+
+const Login = () => {
+  return (
+    <div>
+      <div>
+        <LoginComponents />
+      </div>
+    </div>
+  );
+};
+
+export default Login;
+
+
+register.jsx
+
+
+import React from "react";
+import RegisterCustComponents from "../components/register-cutomer.components";
+import RegisterComponents from "../components/register.components";
+
+const Register = () => {
+  const usertype = JSON.parse(localStorage.getItem("usertype"));
+  switch (usertype.userTypeSelection) {
+    case "Customer":
+      return <RegisterCustComponents />;
+    case "Employee":
+      return <RegisterComponents />;
+    case "Admin":
+      return <RegisterComponents />;
+  }
+};
+
+export default Register;
+
+
+SignUp.jsx
+
+import React from "react";
+import SignUpComponents from "../components/sign-up.components";
+
+const SignUp = () => {
+  return <SignUpComponents />;
+};
+
+export default SignUp;
+
+
+usertype.jsx 
+
+import React from "react";
+import UserTypeComponents from "../components/userType.components";
+
+const userType = () => {
+  return (
+    <div>
+      <div>
+        <UserTypeComponents />
+      </div>
+    </div>
+  );
+};
+
+export default userType;
+
+
+ViewEmployees.jsx 
+
+
+import React from "react";
+import ViewEmployeesComponents from "../components/viewEmployees.components";
+
+const ViewEmployees = () => {
+  return (
+    <>
+      <ViewEmployeesComponents />
+    </>
+  );
+};
+
+export default ViewEmployees;
+
+
+
+viewIssue.jsx 
+
+
+import React from "react";
+import ViewIssueComponents from "../components/viewIssue.components";
+
+const ViewIssue = () => {
+  return <>{<ViewIssueComponents />}</>;
+};
+
+export default ViewIssue;
+
+
+viewProfile.jsx 
+
+import React from "react";
+import ViewProfileComponents from "../components/viewProfile.components";
+import ViewProfileCustComponents from "../components/viewProfileCutomer.components";
+
+const ViewProfile = () => {
+  const usertype = JSON.parse(localStorage.getItem("usertype"));
+  switch (usertype.userTypeSelection) {
+    case "Customer":
+      return <ViewProfileCustComponents />;
+    case "Employee":
+      return <ViewProfileComponents />;
+    case "Admin":
+      return <ViewProfileComponents />;
+  }
+  return (
+    <div>
+      <div></div>
+    </div>
+  );
+};
+
+export default ViewProfile;
+
+
+----------------------------------------------------------------------------------------------------------------------
+
+
+checkstatus.components.js
+
+
+import axios from "axios";
+import React from "react";
+import { useState, useEffect } from "react";
+const baseUrl = process.env.REACT_APP_API_BASE_URL;
+
+const Customer = () => {
+  const [values, setValues] = useState([]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const x = values;
+    // console.log(Object.fromEntries(data.entries()));
+    const url = baseUrl + "/issue/" + x.search;
+    axios.get(url).then((r) => {
+      setValues(r.data);
+      console.log(r.data);
+    });
+  };
+  const onChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
+
+  const loginData = JSON.parse(localStorage.getItem("login"));
+  const [namevalues, namesetValues] = useState([]);
+  useEffect(() => {
+    loadCustomer();
+  }, []);
+
+  const loadCustomer = async () => {
+    const res = await axios.get(baseUrl + "/customer/" + loginData.UserId);
+    console.log(res.data);
+    namesetValues(res.data);
+  };
+
+  return (
+    <>
+      <div className="container">
+        <div className="main-body">
+          <div className="row gutters-sm">
+            <div className="col-md-12 mb-3">
+              <div className="card">
+                <div className="card-body">
+                  <div className="d-flex flex-column align-items-center text-center">
+                    <img
+                      src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                      alt="Admin"
+                      className="rounded-circle"
+                      width="150"
+                    ></img>
+                    <div className="mt-3">
+                      <h4>{namevalues.CustomerName}</h4>
+                      <p className="text-secondary mb-1">
+                        <b>Cust Id:</b> {namevalues.CustomerId}
+                      </p>
+                      <p className="text-secondary mb-1">
+                        <b>Acc Type:</b> {namevalues.BankAccountType}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="row gutters-sm">
+            <div className="col-md-12">
+              <div className="row gutters-sm">
+                <div className="col-sm-12 mb-3">
+                  <div className="card h-100">
+                    <div className="card-body">
+                      <center>
+                        <h4 className="d-flex align-items-center">
+                          <b>Track Issue</b>
+                        </h4>
+                      </center>
+                      <div className="row">
+                        <div className="col-md-12">
+                          <div className="row">
+                            <div className="col-md-9">
+                              <div className="track-search">
+                                <div className="form-track">
+                                  <i className="fa fa-search"></i>
+                                  <input
+                                    required
+                                    type="number"
+                                    name="search"
+                                    className="form-control form-input"
+                                    onChange={(e) => onChange(e)}
+                                    placeholder="Enter Status Id"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              className="col-md-3"
+                              style={{ margin: "0px auto " }}
+                            >
+                              <button
+                                className="btn btn-primary"
+                                onClick={handleSubmit}
+                              >
+                                Search
+                              </button>
+                            </div>
+                          </div>
+                          <div className="row">
+                            <div className="col-md-6">
+                              <h6>
+                                <b>Issue Id:</b> {values.IssueId}
+                              </h6>
+                            </div>
+                            <div className="col-md-6">
+                              <h6>
+                                <b>Description:</b> {values.Descriptions}
+                              </h6>
+                            </div>
+                          </div>
+                          <div className="row">
+                            <div className="col-md-6">
+                              <h6>
+                                <b>Status:</b> {values.Status}
+                              </h6>
+                            </div>
+                            <div className="col-md-6">
+                              <h6>
+                                <b>Customer ID:</b> {values.CustomerId}
+                              </h6>
+                            </div>
+                          </div>
+                          <div className="col-md-6">
+                            <h6>
+                              <b>Ammount:</b> {values.Ammount}
+                            </h6>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* <form onSubmit={handleSubmit}>
+        <input required
+          type="number"
+          name="search"
+          onChange={(e) => onChange(e)}
+          placeholder="Enter Status Id"
+        />
+        <button>Search</button>
+      </form>
+      <div className="card p-2 m-3">
+        <div className="row">
+          <div className="col-md-6">
+            Issue Id: <b>{values.IssueId}</b>
+          </div>
+          <div className="col-md-6">
+            Customer Id: <b>{values.CustomerId}</b>
+          </div>
+          <div className="col-md-6">
+            Status: <b>{values.Status}</b>
+          </div>
+          <div className="col-md-6">
+            Descriptions: <b>{values.Descriptions}</b>
+          </div>
+        </div>
+      </div> */}
+    </>
+  );
+};
+
+const Employee = () => {
+  const [values, setValues] = useState([]);
+  const [statusValues, setStatusValues] = useState([]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    const x = Object.fromEntries(data.entries());
+    console.log(Object.fromEntries(data.entries()));
+    const url = baseUrl + "/issue/" + x.search;
+    axios.get(url).then((r) => {
+      setValues(r.data);
+      console.log(r.data);
+    });
+  };
+
+  const handleStatusSubmit = (e) => {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    const x = Object.fromEntries(data.entries());
+    const url = baseUrl + "/issue/" + values.IssueId;
+    axios.put(url, x).then((r) => console.log(r));
+    console.log(x);
+  };
+
+  const onChangeStatus = (e) => {
+    setStatusValues({ ...statusValues, [e.target.name]: e.target.value });
+  };
+
+  const onChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
+  return (
+    <>
+      <form onSubmit={handleSubmit}>
+        <input
+          required
+          type="number"
+          name="search"
+          onChange={(e) => onChange(e)}
+          placeholder="Enter Status Id"
+        />
+        <button>Search</button>
+      </form>
+      <div className="card p-2 m-3">
+        <div className="row">
+          <div className="col-md-6">
+            Issue Id: <b>{values.IssueId}</b>
+          </div>
+          <div className="col-md-6">
+            Customer Id: <b>{values.CustomerId}</b>
+          </div>
+          <div className="col-md-6">
+            Status: <b>{values.Status}</b>
+          </div>
+          <div className="col-md-6">
+            Descriptions: <b>{values.Descriptions}</b>
+          </div>
+          <div className="col-md-6">
+            Amount:<b>{values.Ammount}</b>
+          </div>
+          <div className="col-md-6">
+            Transition Type:<b>{values.TransitionType}</b>
+          </div>
+          <div className="col-md-12">
+            <form onSubmit={handleStatusSubmit}>
+              <input
+                required
+                type="text"
+                name="Status"
+                onChange={(e) => onChangeStatus(e)}
+                placeholder="Enter Status Id"
+              />
+              <button>Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+const CheckStatusComponents = () => {
+  const usertype = JSON.parse(localStorage.getItem("usertype"));
+  switch (usertype.userTypeSelection) {
+    case "Customer":
+      return <Customer />;
+    case "Employee":
+      return <Employee />;
+    case "Admin":
+      return <Employee />;
+  }
+};
+
+export default CheckStatusComponents;
+
+
+home.components.js 
+
+import React from "react";
+import "./css/home.css";
+import { Link } from "react-router-dom";
+const HomeComponents = () => {
+  return (
+    <>
+      <div className="main-banner-section">
+        <div className="container">
+          <div className="row align-items-center">
+            <div className="col-lg-12 col-md-12">
+              <div className="banner-content">
+                <h1>Modern Age Banking for Modern People</h1>
+                <p>Operate your bank on your fingertips</p>
+                <Link to="/userselection" className="btn btn-primary">
+                  Click Me
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="featured-boxes-area">
+        <div className="container">
+          <div className="featured-boxes-inner">
+            <div className="row m-0">
+              <div className="col-lg-3 col-sm-6 col-md-6 p-0">
+                <div className="single-featured-box">
+                  <div className="icon color-fb7756">
+                    <i className="flaticon-piggy-bank"></i>
+                  </div>
+                  <h3>Transparent Pricing</h3>
+                  <p>
+                    Lorem ipsum suspendisse ultrices gravida. Risus commodo
+                    viverra maecenas accumsan.
+                  </p>
+                  <a href="link.com" className="read-more-btn">
+                    Read More
+                  </a>
+                </div>
+              </div>
+              <div className="col-lg-3 col-sm-6 col-md-6 p-0">
+                <div className="single-featured-box">
+                  <div className="icon color-facd60">
+                    <i className="flaticon-data-encryption"></i>
+                  </div>
+                  <h3>Fully Encrypted</h3>
+                  <p>
+                    Lorem ipsum suspendisse ultrices gravida. Risus commodo
+                    viverra maecenas accumsan.
+                  </p>
+                  <a href="link.com" className="read-more-btn">
+                    Read More
+                  </a>
+                </div>
+              </div>
+              <div className="col-lg-3 col-sm-6 col-md-6 p-0">
+                <div className="single-featured-box">
+                  <div className="icon color-1ac0c6">
+                    <i className="flaticon-wallet"></i>
+                  </div>
+                  <h3>Instant Cashout</h3>
+                  <p>
+                    Lorem ipsum suspendisse ultrices gravida. Risus commodo
+                    viverra maecenas accumsan.
+                  </p>
+                  <a href="link.com" className="read-more-btn">
+                    Read More
+                  </a>
+                </div>
+              </div>
+              <div className="col-lg-3 col-sm-6 col-md-6 p-0">
+                <div className="single-featured-box">
+                  <div className="icon">
+                    <i className="flaticon-shield"></i>
+                  </div>
+                  <h3>Safe and Secure</h3>
+                  <p>
+                    Quis ipsum suspendisse ultrices gravida. Risus commodo
+                    viverra maecenas accumsan.
+                  </p>
+                  <a href="link.com" className="read-more-btn">
+                    Read More
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="introduction-area ptb-70 pt-0">
+        <div className="container-f p-0">
+          <div className="overview-box">
+            <div className="overview-content">
+              <div className="content left-content">
+                <span className="sub-title">Introduction</span>
+                <h2>Chargeback Calculator</h2>
+                <div className="bar"></div>
+                <p>
+                  With the growth of internet and wireless communication
+                  technologies, telecommunications etc. in recent years, the
+                  structure and nature of banking and financial services have
+                  gone for a sea change. E-banking is the latest in this series
+                  of technological wonders in the recent past which involves use
+                  of internet for delivery of banking products and services.
+                  However, customers using this online application faces
+                  multiple issues like transaction stuck or rollback. They have
+                  lot of queries to answer about their issues and chargebacks.
+                  In this project customer will be able ask their issue and also
+                  ask for a chargeback in case of any stuck or rolled back
+                  transactions. This project provides the solution for the
+                  customer issues and give detailed information with the
+                  solution.
+                </p>
+              </div>
+            </div>
+            <div className="overview-image">
+              <div className="image">
+                <img alt="images" src={require("../assets/feature4.jpg")} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <section className="how-it-works-area ptb-70">
+        <div className="container">
+          <div className="section-title">
+            <h2>How It Works</h2>
+            <div className="bar"></div>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
+          <div className="row">
+            <div className="col-lg-4 col-md-6">
+              <div className="single-how-it-works">
+                <img
+                  alt="images"
+                  src={require("../assets/how-it-works/how-it-work1.png")}
+                />
+                <h3>1. Register/Login </h3>
+                <p>Register/Login using your Customer Id and Password </p>
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-6">
+              <div className="single-how-it-works">
+                <img
+                  alt="images"
+                  src={require("../assets/how-it-works/how-it-work2.png")}
+                />
+                <h3>2. Apply for Chargeback</h3>
+                <p>
+                  Apply for chargeback by providing all the necessary details.
+                </p>
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-6">
+              <div className="single-how-it-works">
+                <img
+                  alt="images"
+                  src={require("../assets/how-it-works/how-it-work3.png")}
+                />
+                <h3>3. Verification</h3>
+                <p>
+                  Our team will verify will verify information provided by you.
+                </p>
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-6">
+              <div className="single-how-it-works">
+                <img
+                  alt="images"
+                  src={require("../assets/how-it-works/how-it-work4.png")}
+                />
+                <h3>4. Chargeback Conclusion</h3>
+                <p>Our team will update status of chargeback.</p>
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-6">
+              <div className="single-how-it-works">
+                <img
+                  alt="images"
+                  src={require("../assets/how-it-works/how-it-work5.png")}
+                />
+                <h3>5. Receive Acceptance/Decline</h3>
+                <p>
+                  Successful = Amount Received <br></br>Unsuccessful = Decline
+                  Message
+                </p>
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-6">
+              <div className="single-how-it-works">
+                <img
+                  alt="images"
+                  src={require("../assets/how-it-works/how-it-work6.png")}
+                />
+                <h3>6. Enjoy Shopping</h3>
+                <p>Enjoy using our banking facility for doing transaction.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="team-area pt-70 pb-50 bg-f7fafd">
+        <div className="container">
+          <div className="section-title">
+            <h2>Meet our team</h2>
+            <div className="bar"></div>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
+          <div className="row">
+            <div className="col-lg-4 col-md-6">
+              <div className="single-team-member">
+                <div className="member-image">
+                  <img alt="images" src={require("../assets/team1.jpg")}></img>
+                </div>
+                <div className="member-content">
+                  <h3>Himanshu Gupta</h3>
+                  <span>Memeber 1</span>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-6">
+              <div className="single-team-member">
+                <div className="member-image">
+                  <img alt="images" src={require("../assets/team2.jpg")}></img>
+                </div>
+                <div className="member-content">
+                  <h3>Lavanya Panyam</h3>
+                  <span>Member 2</span>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-6">
+              <div className="single-team-member">
+                <div className="member-image">
+                  <img alt="images" src={require("../assets/team3.jpg")}></img>
+                </div>
+                <div className="member-content">
+                  <h3>Palash Joshi</h3>
+                  <span>Member 3</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-lg-4 col-md-6">
+              <div className="single-team-member">
+                <div className="member-image">
+                  <img alt="images" src={require("../assets/team1.jpg")}></img>
+                </div>
+                <div className="member-content">
+                  <h3>Burhan Shaik</h3>
+                  <span>Memeber 4</span>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-6">
+              <div className="single-team-member">
+                <div className="member-image">
+                  <img alt="images" src={require("../assets/team2.jpg")}></img>
+                </div>
+                <div className="member-content">
+                  <h3>Niharika Timiri</h3>
+                  <span>Member 5</span>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-6">
+              <div className="single-team-member">
+                <div className="member-image">
+                  <img alt="images" src={require("../assets/team3.jpg")}></img>
+                </div>
+                <div className="member-content">
+                  <h3>Abhay Chauhan</h3>
+                  <span>Member 6</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+};
+
+export default HomeComponents;
+
+
+issue.components.js 
+
+import React, { useEffect } from "react";
+import { useState } from "react";
+import axios from "axios";
+import UserInput from "./UserInput.components";
+const baseUrl = process.env.REACT_APP_API_BASE_URL;
+
+const IssueComponents = () => {
+  const [values, setValues] = useState({});
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    console.log(Object.fromEntries(data.entries()));
+    axios
+      .post(baseUrl + "/issue", Object.fromEntries(data.entries()))
+      .then((r) => {
+        console.log("Done with Issue" + r);
+        alert("thank u for your query");
+        setValues.reset();
+      });
+  };
+
+  const state = JSON.parse(localStorage.getItem("login"));
+  console.log(state);
+
+  const onChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
+
+  const loginData = JSON.parse(localStorage.getItem("login"));
+  const [namevalues, namesetValues] = useState({});
+  useEffect(() => {
+    loadCustomer();
+  }, []);
+
+  const loadCustomer = async () => {
+    const res = await axios.get(baseUrl + "/customer/" + loginData.UserId);
+    console.log(res.data);
+    namesetValues(res.data);
+  };
+
+  const inputs = [
+    {
+      type: "number",
+      placeholder: "Enter Customer Id",
+      name: "customerId",
+      label: "Customer Id",
+      value: state.UserId,
+      status: true,
+    },
+    {
+      type: "text",
+      placeholder: "Describe your point",
+      name: "descriptions",
+      label: "Description",
+    },
+    {
+      type: "datetime-local",
+      placeholder: "Issue Date Time",
+      name: "IssueDateTime",
+      label: "Enter Issue Date and Time",
+    },
+    // {
+    //   type: "select",
+    //   placeholder: "dropdown",
+    //   name: "dropdown",
+    //   label: "dropdown",
+    //   options: ["dropdown 1", "dropdown 2"],
+    // },
+    {
+      type: "number",
+      placeholder: "Enter Ammount",
+      name: "ammount",
+      label: "Enter Ammount",
+    },
+    {
+      type: "text",
+      placeholder: "Enter Transtion Type",
+      name: "TransitionType",
+      label: "Enter Transtion Type",
+    },
+    {
+      type: "text",
+      placeholder: "Enter Transtion Mode",
+      name: "TransitionMode",
+      label: "Enter Transtion Mode",
+    },
+  ];
+
+  return (
+    <div className="app-wraper">
+      <div className="card">
+        <div className="card-body">
+          <div className="d-flex flex-column align-items-center text-center">
+            <img
+              src="https://bootdey.com/img/Content/avatar/avatar7.png"
+              alt="Admin"
+              className="rounded-circle"
+              width="150"
+            ></img>
+            <div className="mt-3">
+              <h4>{namevalues.CustomerName}</h4>
+              <p className="text-secondary mb-1">
+                <b>Cust Id:</b> {namevalues.CustomerId}
+              </p>
+              <p className="text-secondary mb-1">
+                <b>Acc Type:</b> {namevalues.BankAccountType}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="container" style={{ display: "flex" }}>
+        <form onSubmit={handleSubmit}>
+          <div className="card" style={{ padding: "10px" }}>
+            <h1 className="text-center">Issue Component</h1>
+            <div className="row">
+              {inputs.map((input, index) => (
+                <div className="col-md-4 col-sm-12" key={index}>
+                  {input.label}
+                  <UserInput
+                    {...input}
+                    value={values[input.name] || input.value}
+                    onChange={(e) => onChange(e)}
+                  />
+                </div>
+              ))}
+            </div>
+            <button
+              className=" btn btn-primary"
+              style={{ width: "30%", margin: "0 auto" }}
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default IssueComponents;
+
+
+
+login.components.js 
+
+import axios from "axios";
+import React from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+const baseUrl = process.env.REACT_APP_API_BASE_URL;
+
+const LoginComponents = () => {
+  const state = JSON.parse(localStorage.getItem("usertype"));
+  console.log(state.userTypeSelection);
+  const [values, setValues] = useState({});
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    const xdata = Object.fromEntries(data.entries());
+    const x = {
+      UserType: state.userTypeSelection,
+      IsProfileSet: "false",
+    };
+    const finalData = Object.assign(xdata, x);
+    axios
+      .post(baseUrl + "/userHandle/register", finalData)
+      .then((r) => {
+        console.log(r);
+        if (
+          window.confirm(
+            "You want to continue for Login with " + r.UserDetails.UserId
+          ) == true
+        ) {
+          navigate("/signin");
+        } else {
+          navigate("/userselection");
+        }
+      })
+      .catch((error) => {
+        alert("check your Username or Password");
+      });
+  };
+
+  const onChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
+
+  return (
+    <div className="login-area">
+      <div className="container">
+        <div className="app-wrapper">
+          <div className="row m-0">
+            <div className="col-md-12 col-lg-12">
+              <div className="d-flex justify-content-center p-3">
+                <h1 className="page-title">Sign Up</h1>
+              </div>
+            </div>
+          </div>
+          <div className="row m-0">
+            <div className="col-md-12 col-lg-12 justify-content-center">
+              <div className="login-container-wrapper clearfix">
+                <div className="tab-content">
+                  <form
+                    onSubmit={handleSubmit}
+                    className="form-horizontal login-form"
+                  >
+                    <div className="col-md-12 col-sm-12">
+                      <div className="form-group relative">
+                        <input
+                          name="Username"
+                          placeholder="Mail Id"
+                          onChange={(e) => onChange(e)}
+                          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div className="col-md-12 col-sm-12">
+                      <div className="form-group relative">
+                        <input
+                          name="Password"
+                          type={"Password"}
+                          placeholder="Password"
+                          onChange={(e) => onChange(e)}
+                          minLength="6"
+                          maxLength="16"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div className="form-group d-flex justify-content-center">
+                      <button className="btn btn-success btn-lg btn-block">
+                        Login
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    // <div className="container-fluid">
+    //   <div className="app-wrapper">
+    //     <h1 className="text-center">Sign Up</h1>
+    // <form onSubmit={handleSubmit}>
+    //   <input
+    //     name="Username"
+    //     placeholder="Mail Id"
+    //     onChange={(e) => onChange(e)}
+    //     pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+    //     required
+    //   />
+    //   <input
+    //     name="Password"
+    //     type={"Password"}
+    //     placeholder="Password"
+    //     onChange={(e) => onChange(e)}
+    //     minlength="6"
+    //     maxlength="16"
+    //     required
+    //   />
+    //   <button>Submit</button>
+    // </form>
+    //   </div>
+    // </div>
+  );
+};
+
+export default LoginComponents;
+
+
+register-customer.components.js 
+
+import React from "react";
+import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
+const baseUrl = process.env.REACT_APP_API_BASE_URL;
+
+const RegisterCustComponents = () => {
+  const usertypeData = JSON.parse(localStorage.getItem("usertype"));
+  const state = JSON.parse(localStorage.getItem("login"));
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    console.log(Object.fromEntries(data.entries()));
+    var x = "customer";
+
+    axios
+      .post(baseUrl + "/" + x, Object.fromEntries(data.entries()))
+      .then((r) => {
+        axios
+          .put(
+            baseUrl +
+              "/loginfunction/" +
+              JSON.parse(localStorage.getItem("login")).UserId,
+            { IsProfileSet: "true" }
+          )
+          .then((r) => {
+            navigate("/view-profile", { state: r });
+          });
+        console.log("Done with Issue" + r);
+      });
+  };
+
+  const [values, setValues] = useState([]);
+  console.log(values);
+  const onChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
+
+  return (
+    <div className="container-fluid">
+      <div className="app-wrapper">
+        <div className="card p-4">
+          <h2 className="d-flex justify-content-center ">
+            Registration Customer Form
+          </h2>
+          <form onSubmit={handleSubmit}>
+            <div className="row p-2 justify-content-center">
+              <div className="col-5">
+                {state.UserType + " ID"}
+                <input
+                  required
+                  className="form-control input-sm"
+                  placeholder={state.UserType + " ID"}
+                  value={state.UserId}
+                  name="CustomerId"
+                  onChange={(e) => onChange(e)}
+                  readOnly
+                />
+              </div>
+              <div className="col-5">
+                {state.UserType + " Name"}
+                <input
+                  required
+                  className="form-control input-sm"
+                  placeholder={state.UserType + " Name"}
+                  name="CustomerName"
+                  onChange={(e) => onChange(e)}
+                />
+              </div>
+              <div className="col-5">
+                Mail Id
+                <input
+                  required
+                  className="form-control input-sm"
+                  placeholder="Personal Mail Id"
+                  value={state.Username}
+                  onChange={(e) => onChange(e)}
+                  readOnly
+                />
+              </div>
+              <div className="col-5">
+                Date Of Birth
+                <input
+                  required
+                  type={"datetime-local"}
+                  className="form-control input-sm"
+                  placeholder="Date Of Birth"
+                  onChange={(e) => onChange(e)}
+                  name="DOB"
+                />
+              </div>
+              <div className="col-5">
+                <div className="form-group">
+                  Permanent Address
+                  <input
+                    required
+                    type="text"
+                    className="form-control input-sm"
+                    placeholder="Permanent Address"
+                    onChange={(e) => onChange(e)}
+                    name="CustomerAddress"
+                  />
+                </div>
+              </div>
+              <div className="col-5">
+                Account Type
+                <input
+                  required
+                  type="text"
+                  className="form-control input-sm"
+                  placeholder="eg. Saving"
+                  onChange={(e) => onChange(e)}
+                  name="BankAccountType"
+                />
+              </div>
+              <div className="col-5">
+                Bank Branch
+                <input
+                  required
+                  className="form-control input-sm"
+                  placeholder="eg. Vakola"
+                  type={"text"}
+                  onChange={(e) => onChange(e)}
+                  name="BankAccountBranch"
+                />
+              </div>
+              <div className="col-5">
+                City
+                <input
+                  required
+                  className="form-control input-sm"
+                  placeholder="City"
+                  type={"text"}
+                  onChange={(e) => onChange(e)}
+                  name="BankCity"
+                />
+              </div>
+
+              <div className="col-5">
+                Bank State
+                <input
+                  required
+                  type={"text"}
+                  className="form-control input-sm"
+                  placeholder="State"
+                  onChange={(e) => onChange(e)}
+                  name="BankState"
+                />
+              </div>
+              <div className="col-5"></div>
+            </div>
+            <div className="d-flex justify-content-center p-2">
+              <button className="btn btn-primary">Save Profile</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default RegisterCustComponents;
+
+
+register.components.js
+
+import React from "react";
+import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
+const baseUrl = process.env.REACT_APP_API_BASE_URL;
+
+const RegisterComponents = () => {
+  const usertypeData = JSON.parse(localStorage.getItem("usertype"));
+  const state = JSON.parse(localStorage.getItem("login"));
+  const navigate = useNavigate();
+  console.log(state);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    console.log(Object.fromEntries(data.entries()));
+    var x = "EmployeeDetail";
+    console.log(x);
+    if (usertypeData === "Customer") {
+      x = "customer";
+    }
+
+    axios
+      .post(baseUrl + "/" + x, Object.fromEntries(data.entries()))
+      .then((r) => {
+        axios
+          .put(
+            baseUrl +
+              "/loginfunction/" +
+              JSON.parse(localStorage.getItem("login")).UserId,
+            { IsProfileSet: "true" }
+          )
+          .then((r) => {
+            navigate("/view-profile", { state: r });
+          });
+        console.log("Done with Issue" + r);
+      });
+  };
+
+  const [values, setValues] = useState([]);
+
+  const onChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
+
+  return (
+    <div className="container-fluid">
+      <div className="app-wrapper">
+        <div className="card">
+          <h2 className="d-flex justify-content-center ">Registration Form</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="row p-2">
+              <div className="col-5">
+                {state.UserType + " Mail ID"}
+                <input
+                  required
+                  type={"text"}
+                  className="form-control input-sm"
+                  placeholder={state.UserType + "Mail ID"}
+                  value={state.UserId + "@chargeback.com"}
+                  name="EmpMailId"
+                  onChange={() => onChange()}
+                  readOnly
+                />
+              </div>
+              <div className="col-5">
+                {state.UserType + " ID"}
+                <input
+                  required
+                  className="form-control input-sm"
+                  placeholder={state.UserType + " ID"}
+                  value={state.UserId}
+                  name="EmpId"
+                  onChange={(e) => onChange(e)}
+                  readOnly
+                />
+              </div>
+            </div>
+            <div className="row p-2">
+              <div className="col-5">
+                {state.UserType + " Name"}
+                <input
+                  required
+                  className="form-control input-sm"
+                  placeholder={state.UserType + " Name"}
+                  name="EmpName"
+                  onChange={(e) => onChange(e)}
+                />
+              </div>
+              <div className="col-5">
+                Personal Mail Id
+                <input
+                  required
+                  className="form-control input-sm"
+                  placeholder="Personal Mail Id"
+                  value={state.Username}
+                  name="EmpPersonalMailId"
+                  onChange={(e) => onChange(e)}
+                  readOnly
+                />
+              </div>
+            </div>
+            <div className="row p-2">
+              <div className="col-5">
+                Mobile Number
+                <input
+                  required
+                  type="number"
+                  className="form-control input-sm"
+                  placeholder="Mobile Number"
+                  onChange={(e) => onChange(e)}
+                  name="MobileNumber"
+                />
+              </div>
+              <div className="col-5">
+                <div className="form-group">
+                  Permanent Address
+                  <input
+                    required
+                    type="text"
+                    className="form-control input-sm"
+                    placeholder="Permanent Address"
+                    onChange={(e) => onChange(e)}
+                    name="PermanentAddress"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="row p-2">
+              <div className="col-5">
+                City
+                <input
+                  required
+                  type="text"
+                  className="form-control input-sm"
+                  placeholder="City"
+                  onChange={(e) => onChange(e)}
+                  name="City"
+                />
+              </div>
+              <div className="col-5">
+                State
+                <input
+                  required
+                  className="form-control input-sm"
+                  placeholder="State"
+                  type={"text"}
+                  onChange={(e) => onChange(e)}
+                  name="State"
+                />
+              </div>
+            </div>
+            <div className="row p-2">
+              <div className="col-5">
+                Country
+                <input
+                  required
+                  className="form-control input-sm"
+                  placeholder="Country"
+                  type={"text"}
+                  onChange={(e) => onChange(e)}
+                  name="Country"
+                />
+              </div>
+              <div className="col-5">
+                Date Of Birth
+                <input
+                  required
+                  type={"datetime-local"}
+                  className="form-control input-sm"
+                  placeholder="Date Of Birth"
+                  onChange={(e) => onChange(e)}
+                  name="DOB"
+                />
+              </div>
+            </div>
+            <div className="row p-2">
+              <div className="col-5">
+                Date Of Joining
+                <input
+                  required
+                  type={"datetime-local"}
+                  className="form-control input-sm"
+                  placeholder="Date Of Joining"
+                  onChange={(e) => onChange(e)}
+                  name="DOJ"
+                />
+              </div>
+            </div>
+            <div className="d-flex justify-content-center p-2">
+              <button className="btn btn-primary">Sign in</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default RegisterComponents;
+
+
+sidebar.components.js 
+
+import React from "react";
+import { Link, NavLink } from "react-router-dom";
+// import "./css/sidebar.css";
+import "./css/home.css";
+const Employee = () => {
+  return (
+    <>
+      <div className="nav-sidebar">
+        <div className="logo-details">
+          <i className="bx bxl-c-plus-plus"></i>
+          <span className="logo_name">CTS BANK</span>
+        </div>
+        <ul className="nav-links">
+          <li>
+            <NavLink to="/view-profile">
+              <i className="fa fa-home"></i>
+              <span className="links_name">Your Profile</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/view-issue">
+              <i className="bx bx-list-ul fa fa-user-plus"></i>
+              <span className="links_name">View Issue</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/check-status">
+              <i className="bx bx-list-ul fa fa-user"></i>
+              <span className="links_name">Track Status</span>
+            </NavLink>
+          </li>
+        </ul>
+      </div>
+      {/* <ul className="side">
+        <li>
+          <Link to="/view-profile">Home</Link>
+        </li>
+        <li>
+          <Link to="/view-issue">View Issue</Link>
+        </li>
+        <li>
+          <Link to="/check-status">Status</Link>
+        </li>
+      </ul> */}
+    </>
+  );
+};
+const Admin = () => {
+  return (
+    <>
+      <div className="nav-sidebar">
+        <div className="logo-details">
+          <i className="bx bxl-c-plus-plus"></i>
+          <span className="logo_name">CTS BANK</span>
+        </div>
+        <ul className="nav-links">
+          <li>
+            <NavLink to="/view-profile">
+              <i className="fa fa-home"></i>
+              <span className="links_name">Your Profile</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/view-issue">
+              <i className="bx bx-list-ul fa fa-user-plus"></i>
+              <span className="links_name">View Issue</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/view-employee">
+              <i className="bx bx-list-ul fa fa-user"></i>
+              <span className="links_name">View Employee</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/check-status">
+              <i className="bx bx-list-ul fa fa-user"></i>
+              <span className="links_name">Track Status</span>
+            </NavLink>
+          </li>
+        </ul>
+      </div>
+      {/* <ul className="side">
+        <li>
+          <Link to="/view-profile">Home</Link>
+        </li>
+        <li>
+          <Link to="/view-issue">View Issue</Link>
+        </li>
+        <li>
+          <Link to="/check-status">Status</Link>
+        </li>
+      </ul> */}
+    </>
+  );
+};
+const Customer = () => {
+  return (
+    <>
+      <div className="nav-sidebar">
+        <div className="logo-details">
+          <i className="bx bxl-c-plus-plus"></i>
+          <span className="logo_name">CTS BANK</span>
+        </div>
+        <ul className="nav-links">
+          <li>
+            <NavLink to="/view-profile">
+              <i className="fa fa-home"></i>
+              <span className="links_name">Your Profile</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/issue">
+              <i className="bx bx-box fa fa-users"></i>
+              <span className="links_name">Create Issue</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/view-issue">
+              <i className="bx bx-list-ul fa fa-user-plus"></i>
+              <span className="links_name">View Issue</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/check-status">
+              <i className="bx bx-list-ul fa fa-user"></i>
+              <span className="links_name">Track Status</span>
+            </NavLink>
+          </li>
+          {/* <li>
+                        <NavLink>
+                            <i className='bx bx-box fa fa-users'></i>
+                            <span className="links_name">All Customers</span>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink>
+                            <i className='bx bx-list-ul fa fa-user-plus'></i>
+                            <span className="links_name">Manage Customers</span>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink>
+                            <i className='bx bx-pie-chart-alt-2 fa fa-clipboard'></i>
+                            <span className="links_name">Complaints</span>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink>
+                            <i className='bx bx-coin-stack fa fa-database'></i>
+                            <span className="links_name">Analytics</span>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink>
+                            <i className='bx bx-cog fa fa-cog'></i>
+                            <span className="links_name">Setting</span>
+                        </NavLink>
+                    </li>*/}
+          {/* <li className="log_out">
+            <NavLink to="/login">
+              <i className="bx bx-log-out fa fa-lock"></i>
+              <span className="links_name">Log out</span>
+            </NavLink>
+          </li> */}
+        </ul>
+      </div>
+      {/* <ul className="side">
+        <li>
+          <Link to="/view-profile">Your Profile</Link>
+        </li>
+        <li>
+          <Link to="/issue">Create Issue</Link>
+        </li>
+        <li>
+          <Link to="/view-issue">View Issue</Link>
+        </li>
+        <li>
+          <Link to="/check-status">Status</Link>
+        </li>
+      </ul> */}
+    </>
+  );
+};
+
+const Sidebar = () => {
+  const data = JSON.parse(localStorage.getItem("usertype")).userTypeSelection;
+  console.log(data);
+  switch (data) {
+    case "Employee":
+      return <Employee />;
+    case "Admin":
+      return <Admin />;
+    case "Customer":
+      return <Customer />;
+  }
+};
+
+export default Sidebar;
+
+
+sign-up.components.js 
+
+import axios from "axios";
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import UserInput from "./UserInput.components";
+const baseUrl = process.env.REACT_APP_API_BASE_URL;
+
+const SignUpComponents = (props) => {
+  const navigate = useNavigate();
+  const state = JSON.parse(localStorage.getItem("usertype"));
+  console.log(state.userTypeSelection);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    axios
+      .post(baseUrl + "/userhandle/login", Object.fromEntries(data.entries()))
+      .then((r) => {
+        console.log(r);
+        const userData = r.data.UserDetails;
+        console.log(userData);
+        localStorage.setItem("login", JSON.stringify(userData));
+        localStorage.setItem("isLogin", true);
+        if (userData.IsProfileSet.split(" ").join("") === "true") {
+          navigate("/view-profile");
+          window.location.reload();
+        } else {
+          navigate("/register");
+        }
+      })
+      .catch((e) => {
+        alert("Please check ur  Username and Password");
+      });
+  };
+
+  const [values, setValues] = useState({});
+
+  const onChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
+
+  const inputs = [
+    {
+      type: "text",
+      placeholder: "Enter UserName /  UserId",
+      name: "username",
+      label: "UserName /  UserId",
+    },
+    {
+      type: "password",
+      placeholder: "Enter Password",
+      name: "password",
+      label: "Password",
+    },
+  ];
+
+  return (
+    <>
+      <div className="login-area">
+        <div className="container">
+          <div className="app-wrapper">
+            <div className="row m-0">
+              <div className="col-md-12 col-lg-12">
+                <div className="d-flex justify-content-center p-3">
+                  <h1 className="page-title">Sign In</h1>
+                </div>
+              </div>
+            </div>
+            <div className="row m-0">
+              <div className="col-md-12 col-lg-12 justify-content-center">
+                <div className="login-container-wrapper clearfix">
+                  <div className="tab-content">
+                    <form
+                      onSubmit={handleSubmit}
+                      className="form-horizontal login-form"
+                    >
+                      {inputs.map((input, index) => (
+                        <div className="col-md-12 col-sm-12" key={index}>
+                          <div className="form-group relative">
+                            <UserInput
+                              className="form-control input-lg"
+                              {...input}
+                              value={values[input.name]}
+                              onChange={(e) => onChange(e)}
+                            />
+                          </div>
+                        </div>
+                      ))}
+                      <div className="form-group d-flex justify-content-center">
+                        <button
+                          className="btn btn-success btn-lg btn-block"
+                          type="submit"
+                        >
+                          Login
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default SignUpComponents;
+
+
+topbar.components.js 
+
+
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "./css/topbar.css";
+const TopBar = () => {
+  const navigate = useNavigate();
+  const logout = () => {
+    localStorage.removeItem("usertype");
+    localStorage.removeItem("login");
+    localStorage.removeItem("isLogin");
+    navigate("/home");
+    window.location.reload();
+  };
+  const data = JSON.parse(localStorage.getItem("usertype")).userTypeSelection;
+  return (
+    <>
+      <section className="home-section" style={{ height: "10px" }}>
+        <nav>
+          <div className="sidebar-button">
+            <i className="bx bx-menu fa fa-menu sidebarBtn"></i>
+            <span className="dashboard">{data} Panel</span>
+          </div>
+          <div className="profile-details">
+            <img
+              src={"https://bootdey.com/img/Content/avatar/avatar7.png"}
+              alt=""
+            ></img>
+            <span className="admin_name">
+              <button className="btn" onClick={logout}>
+                Logout
+              </button>
+            </span>
+            <i className="bx bx-chevron-down fa fa-chevron-down"></i>
+          </div>
+        </nav>
+      </section>
+      {/* <ul className="topB fixed-top">
+        <li>
+          <a className="active" href="#home">
+            Cargeback Dashboard for {data}
+          </a>
+        </li>
+        <li style={{ float: "right" }}>
+          <Link to="/view-profile">Profile</Link>
+        </li>
+        <li style={{ float: "right" }}>
+          <button className="btn" onClick={logout}>
+            Logout
+          </button>
+        </li>
+      </ul> */}
+    </>
+  );
+};
+
+export default TopBar;
+
+
+
+UserInput.components.js
+
+const UserInput = (props) => {
+    const { type, name, id, onChange, placeholder, value, status } = props;
+    return (
+      <>
+        {
+          // type === "select" ? (
+          // <select name={name} id={id}>
+          //   {options.map((option, index) => (
+          //     <option key={index} value={option}>
+          //       {option}
+          //     </option>
+          //   ))}
+          // </select>
+          // ) :
+          <input
+            className="form-control m-1"
+            type={type}
+            id={id}
+            name={name}
+            placeholder={placeholder}
+            required
+            onChange={onChange}
+            value={value}
+            readOnly={props.status}
+            required
+          />
+        }
+      </>
+    );
+  };
+  
+  export default UserInput;
+
+  
+  userType.components.js 
+
+  import React from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./css/lavi.css";
+const UserTypeComponents = () => {
+  const navigate = useNavigate();
+  const [values, setValues] = useState({});
+  const [error, setError] = useState("");
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const data = new FormData(e.target);
+  // };
+
+  const HandleSignUpButton = (e) => {
+    e.preventDefault();
+    if (!Object.keys(values).length) {
+      setError("select something to register");
+      return;
+    }
+    localStorage.setItem("usertype", JSON.stringify(values));
+    navigate("/login");
+  };
+  const HandleSignInButton = (e) => {
+    e.preventDefault();
+    if (!Object.keys(values).length) {
+      setError("select something to login");
+      return;
+    }
+    localStorage.setItem("usertype", JSON.stringify(values));
+    navigate("/signin");
+  };
+
+  const onChange = (e) => {
+    console.log(e.target.value);
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
+  return (
+    // <div className="container">
+    //   <div className="app-wrapper">
+    //     <div className="card">
+    //       <h2 className="title">Welcome to Charge Back Calculator</h2>
+
+    //     </div>
+    //   </div>
+    // </div>
+    <div className="login-area">
+      <div className="container">
+        <div className="app-wrapper">
+          <div className="row m-0">
+            <div className="col-md-12 col-lg-12">
+              <div className="d-flex justify-content-center p-3">
+                <h1 className="page-title">Sign In</h1>
+              </div>
+            </div>
+          </div>
+          <div className="row m-0">
+            <div className="col-md-12 col-lg-12 justify-content-center">
+              <div className="login-container-wrapper clearfix">
+                <div className="tab-content">
+                  {/* <form className="form-horizontal login-form">
+                    <div className="form-group relative">
+                      <input
+                        className="form-control input-lg"
+                        placeholder="Username"
+                        required=""
+                        type="text"
+                      ></input>
+                    </div>
+                    <div className="form-group relative">
+                      <input
+                        className="form-control input-lg"
+                        placeholder="Password"
+                        required=""
+                        type="password"
+                      ></input>
+                    </div>
+                    <div className="form-group">
+                      <button
+                        className="btn btn-success btn-lg btn-block"
+                        type="submit"
+                      >
+                        Login
+                      </button>
+                    </div>
+                    <div className="checkbox checkbox-success">
+                      <input id="stay-sign" type="checkbox"></input> &nbsp;
+                      <label for="stay-sign">Stay signed in</label>
+                    </div>
+                    <hr />
+                    <div className="text-center">
+                      <label>
+                        <a href="#">Forgot your password?</a>
+                      </label>
+                    </div>
+                  </form> */}
+                  <form className="form-horizontal login-form">
+                    <div className="col-md-8">
+                      <select
+                        name="userTypeSelection"
+                        className="dropdownC"
+                        onChange={(e) => onChange(e)}
+                        required
+                      >
+                        <option value="null" className="">
+                          --Select Anyone--
+                        </option>
+                        <option value="Customer" className="">
+                          Customer
+                        </option>
+                        <option value="Employee" className="">
+                          Employee
+                        </option>
+                        <option value="Admin" className="">
+                          Admin
+                        </option>
+                      </select>
+                    </div>
+                    <span style={{ color: "red" }}>{error}</span>
+                    <br />
+                    <button
+                      name="regbtn"
+                      id="regbtn"
+                      className="reg m-3 btn btn-info mb-1"
+                      onClick={(e) => HandleSignInButton(e)}
+                    >
+                      Login
+                    </button>
+                    <button
+                      name="sigbtn"
+                      id="sigbtn"
+                      className="sig m-3 btn btn-info mb-1"
+                      onClick={(e) => HandleSignUpButton(e)}
+                    >
+                      Register
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default UserTypeComponents;
+
+
+ViewEmployees.components.js 
+
+
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+const baseUrl = process.env.REACT_APP_API_BASE_URL;
+const ViewEmployeesComponents = () => {
+  const CustomerId = JSON.parse(localStorage.getItem("login")).UserId;
+  useEffect(() => {
+    loadData();
+  }, []);
+  const [values, setValues] = useState([]);
+  const loadData = async () => {
+    const res = await axios.get(baseUrl + "/employeeDetail");
+    console.log(res.data);
+    setValues(res.data);
+  };
+  return (
+    <>
+      <div className="card">
+        <table className="table">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Name</th>
+              <th scope="col">Employee Id</th>
+              <th scope="col">Mail Id</th>
+              <th scope="col">Mobile Number</th>
+            </tr>
+          </thead>
+          {values.map((value, index) => (
+            <tbody key={index}>
+              <tr>
+                <th scope="row">{index + 1}</th>
+                <td>{value.EmpName}</td>
+                <td>{value.EmpID}</td>
+                <td>{value.EmpMailId}</td>
+                <td>{value.MobileNumber}</td>
+              </tr>
+            </tbody>
+          ))}
+        </table>
+      </div>
+    </>
+  );
+};
+
+export default ViewEmployeesComponents;
+
+
+
+viewIssue.components.js 
+
+import axios from "axios";
+import React, { useEffect } from "react";
+import { useState } from "react";
+const baseUrl = process.env.REACT_APP_API_BASE_URL;
+const Employee = () => {
+  useEffect(() => {
+    loadData();
+  }, []);
+  const [values, setValues] = useState([]);
+  const loadData = async () => {
+    const res = await axios.get(baseUrl + "/issue");
+    console.log(res.data);
+    setValues(res.data);
+  };
+  return (
+    <>
+      <div className="card">
+        <table className="table">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Issue Id</th>
+              <th scope="col">Customer Id</th>
+              <th scope="col">Status</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          {values.map((value, index) => (
+            <tbody key={index}>
+              <tr>
+                <th scope="row">{index + 1}</th>
+                <td>{value.IssueId}</td>
+                <td>{value.CustomerId}</td>
+                <td>{value.Status}</td>
+                <td>{value.Descriptions}</td>
+              </tr>
+            </tbody>
+          ))}
+        </table>
+      </div>
+    </>
+  );
+};
+const Customer = () => {
+  const CustomerId = JSON.parse(localStorage.getItem("login")).UserId;
+  useEffect(() => {
+    loadData();
+  }, []);
+  const [values, setValues] = useState([]);
+  const loadData = async () => {
+    const res = await axios.get(baseUrl + "/issue?customerid=" + CustomerId);
+    console.log(res.data);
+    setValues(res.data);
+  };
+  return (
+    <>
+      <div className="container">
+        <div className="main-body">
+          <div className="row gutters-sm">
+            <div className="col-md-12 mb-3">
+              <div className="card">
+                <div className="card-body">
+                  <div className="d-flex flex-column align-items-center text-center">
+                    <img
+                      src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                      alt="Admin"
+                      className="rounded-circle"
+                      width="150"
+                    ></img>
+                    <div className="mt-3">
+                      <h4>Himanshu Gupta</h4>
+                      <p className="text-secondary mb-1">
+                        <b>Cust Id:</b> XXX88
+                      </p>
+                      <p className="text-secondary mb-1">
+                        <b>Acc Type:</b> Savings
+                      </p>
+                      <p className="text-muted font-size-sm">
+                        <b>Address:</b> Bay Area, San Francisco, CA
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="card">
+        <table className="table">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Issue Id</th>
+              <th scope="col">Customer Id</th>
+              <th scope="col">Status</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          {values.map((value, index) => (
+            <tbody key={index}>
+              <tr>
+                <th scope="row">{index + 1}</th>
+                <td>{value.IssueId}</td>
+                <td>{value.CustomerId}</td>
+                <td>{value.Status}</td>
+                <td>{value.Descriptions}</td>
+              </tr>
+            </tbody>
+          ))}
+        </table>
+      </div>
+    </>
+  );
+};
+
+const ViewIssueComponents = () => {
+  const data = JSON.parse(localStorage.getItem("usertype")).userTypeSelection;
+  console.log(data);
+  switch (data) {
+    case "Employee":
+      return <Employee />;
+    case "Admin":
+      return <Employee />;
+    case "Customer":
+      return <Customer />;
+  }
+};
+
+export default ViewIssueComponents;
+
+
+viewProfile.components.jsx 
+
+
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+const baseUrl = process.env.REACT_APP_API_BASE_URL;
+
+const ViewProfileComponents = (props) => {
+  // const { state } = useLocation();
+  const state = JSON.parse(localStorage.getItem("login"));
+  console.log(state.UserId);
+  const [values, setValues] = useState([]);
+  useEffect(() => {
+    loadCustomer();
+  }, []);
+
+  const loadCustomer = async () => {
+    const res = await axios.get(baseUrl + "/EmployeeDetail/" + state.UserId);
+    console.log(res.data);
+    setValues(res.data);
+  };
+
+  const CustomerId = JSON.parse(localStorage.getItem("login")).UserId;
+  useEffect(() => {
+    loadData();
+  }, []);
+  const [issuevalues, issuesetValues] = useState([]);
+  const loadData = async () => {
+    const res = await axios.get(baseUrl + "/issue");
+    console.log(res.data);
+    issuesetValues(res.data);
+  };
+
+  return (
+    <>
+      <div className="container">
+        <div className="main-body">
+          <div className="row gutters-sm">
+            <div className="col-md-4 mb-3">
+              <div className="card">
+                <div className="card-body">
+                  <div className="d-flex flex-column align-items-center text-center">
+                    <img
+                      src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                      alt="Admin"
+                      className="rounded-circle"
+                      width="150"
+                    ></img>
+                    <div className="mt-3">
+                      <h4>{values.EmpName}</h4>
+                      <p className="text-secondary mb-1">
+                        <b>Employee Id:</b> {state.UserId}
+                      </p>
+                      <p className="text-secondary mb-1">
+                        <b>Acc Type:</b> {values.EmpMailId}
+                      </p>
+                      <p className="text-muted font-size-sm">
+                        <b>Address:</b> {values.PermanentAddress}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-8">
+              <div className="card mb-3">
+                <div className="card-body">
+                  <div className="row">
+                    <div className="col-sm-3">
+                      <h6 className="mb-0">Customer ID</h6>
+                    </div>
+                    <div className="col-sm-9 text-secondary">
+                      {values.EmpID}
+                    </div>
+                  </div>
+                  <hr></hr>
+                  <div className="row">
+                    <div className="col-sm-3">
+                      <h6 className="mb-0">Email</h6>
+                    </div>
+                    <div className="col-sm-9 text-secondary">
+                      {state.Username}
+                    </div>
+                  </div>
+                  {/* <div className="row">
+                    <div className="col-sm-3">
+                      <h6 className="mb-0">Phone</h6>
+                    </div>
+                    <div className="col-sm-9 text-secondary">
+                      (+91) {values.}
+                    </div>
+                  </div> */}
+                  {/* <hr /> */}
+                  {/* <div className="row">
+                    <div className="col-sm-3">
+                      <h6 className="mb-0">Account No.</h6>
+                    </div>
+                    <div className="col-sm-9 text-secondary">
+                      {values.BankAccountNo}
+                    </div>
+                  </div> */}
+                  <hr></hr>
+                  {/* <div className="row">
+                    <div className="col-sm-3">
+                      <h6 className="mb-0">IFSC</h6>
+                    </div>
+                    <div className="col-sm-9 text-secondary">BKID0007275</div>
+                  </div>
+                  <hr></hr> */}
+                  <div className="row">
+                    <div className="col-sm-3">
+                      <h6 className="mb-0">City</h6>
+                    </div>
+                    <div className="col-sm-9 text-secondary">{values.City}</div>
+                  </div>
+                  <hr></hr>
+                  <div className="row">
+                    <div className="col-sm-3">
+                      <h6 className="mb-0">State</h6>
+                    </div>
+                    <div className="col-sm-9 text-secondary">
+                      {values.State}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="row gutters-sm">
+            <div className="col-md-12">
+              <div className="row gutters-sm">
+                <div className="col-sm-6 mb-3">
+                  <div className="card h-100">
+                    <div className="card-body">
+                      <h6 className="d-flex align-items-center mb-3">
+                        Profile Snapshots
+                      </h6>
+                      <div className="row">
+                        <div className="col-md-6">
+                          <p className="snap-high">Acc Open Date</p>
+                          <p className="snap-nor">{values.DOJ}</p>
+                        </div>
+                        <div className="col-md-6">
+                          <p className="snap-high">Mobile No</p>
+                          <p className="snap-nor">{values.MobileNumber}</p>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-md-6">
+                          <p className="snap-high">Date of Birth</p>
+                          <p className="snap-nor">{values.DOB}</p>
+                        </div>
+                        <div className="col-md-6">
+                          <p className="snap-high">Country</p>
+                          <p className="snap-nor">{values.Country}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-sm-6 mb-3">
+                  <div className="card h-100">
+                    <div className="card-body">
+                      <h6 className="d-flex align-items-center mb-3">
+                        Recent Activity
+                      </h6>
+                      <table className="table">
+                        <tr>
+                          <th>S.No</th>
+                          <th>Issue Id</th>
+                          <th>Ammount</th>
+                          <th>Status</th>
+                        </tr>
+                        {issuevalues.map((value, index) => (
+                          <tr key={index}>
+                            <td>{index + 1}</td>
+                            <td>{value.IssueId}</td>
+                            <td>{value.Ammount}</td>
+                            <td>{value.Status}</td>
+                          </tr>
+                        ))}
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default ViewProfileComponents;
+
+
+viewProfileCustomer.components.jsx
+
+
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+const baseUrl = process.env.REACT_APP_API_BASE_URL;
+
+const ViewProfileCustComponents = (props) => {
+  // const { state } = useLocation();
+  const state = JSON.parse(localStorage.getItem("login"));
+  console.log(state.UserId);
+  const [values, setValues] = useState({});
+  useEffect(() => {
+    loadCustomer();
+  }, []);
+
+  const loadCustomer = async () => {
+    const res = await axios.get(baseUrl + "/customer/" + state.UserId);
+    console.log(res.data);
+    setValues(res.data);
+  };
+
+  const CustomerId = JSON.parse(localStorage.getItem("login")).UserId;
+  useEffect(() => {
+    loadData();
+  }, []);
+  const [issuevalues, issuesetValues] = useState([]);
+  const loadData = async () => {
+    const res = await axios.get(baseUrl + "/issue?customerid=" + CustomerId);
+    console.log(res.data);
+    issuesetValues(res.data);
+  };
+
+  return (
+    <>
+      <div className="container">
+        <div className="main-body">
+          <div className="row gutters-sm">
+            <div className="col-md-4 mb-3">
+              <div className="card">
+                <div className="card-body">
+                  <div className="d-flex flex-column align-items-center text-center">
+                    <img
+                      src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                      alt="Admin"
+                      className="rounded-circle"
+                      width="150"
+                    ></img>
+                    <div className="mt-3">
+                      <h4>{values.CustomerName}</h4>
+                      <p className="text-secondary mb-1">
+                        <b>Cust Id:</b> {state.UserId}
+                      </p>
+                      <p className="text-secondary mb-1">
+                        <b>Acc Type:</b> {values.BankAccountType}
+                      </p>
+                      <p className="text-muted font-size-sm">
+                        <b>Address:</b> {values.CustomerAddress}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-8">
+              <div className="card mb-3">
+                <div className="card-body">
+                  <div className="row">
+                    <div className="col-sm-3">
+                      <h6 className="mb-0">Customer ID</h6>
+                    </div>
+                    <div className="col-sm-9 text-secondary">
+                      {values.CustomerId}
+                    </div>
+                  </div>
+                  <hr></hr>
+                  <div className="row">
+                    <div className="col-sm-3">
+                      <h6 className="mb-0">Email</h6>
+                    </div>
+                    <div className="col-sm-9 text-secondary">
+                      {state.Username}
+                    </div>
+                  </div>
+                  {/* <div className="row">
+                    <div className="col-sm-3">
+                      <h6 className="mb-0">Phone</h6>
+                    </div>
+                    <div className="col-sm-9 text-secondary">
+                      (+91) {values.}
+                    </div>
+                  </div> */}
+                  <hr />
+                  <div className="row">
+                    <div className="col-sm-3">
+                      <h6 className="mb-0">Account No.</h6>
+                    </div>
+                    <div className="col-sm-9 text-secondary">
+                      {values.BankAccountNo}
+                    </div>
+                  </div>
+                  <hr></hr>
+                  {/* <div className="row">
+                    <div className="col-sm-3">
+                      <h6 className="mb-0">IFSC</h6>
+                    </div>
+                    <div className="col-sm-9 text-secondary">BKID0007275</div>
+                  </div>
+                  <hr></hr> */}
+                  <div className="row">
+                    <div className="col-sm-3">
+                      <h6 className="mb-0">Branch Name</h6>
+                    </div>
+                    <div className="col-sm-9 text-secondary">
+                      {values.BankAccountBranch}
+                    </div>
+                  </div>
+                  <hr></hr>
+                  <div className="row">
+                    <div className="col-sm-3">
+                      <h6 className="mb-0">Branch City</h6>
+                    </div>
+                    <div className="col-sm-9 text-secondary">
+                      {values.BankCity}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="row gutters-sm">
+            <div className="col-md-12">
+              <div className="row gutters-sm">
+                <div className="col-sm-6 mb-3">
+                  <div className="card h-100">
+                    <div className="card-body">
+                      <h6 className="d-flex align-items-center mb-3">
+                        Profile Snapshots
+                      </h6>
+                      <div className="row">
+                        <div className="col-md-6">
+                          <p className="snap-high">Acc Open Date</p>
+                          <p className="snap-nor">
+                            {values.DateAccountOpening}
+                          </p>
+                        </div>
+                        <div className="col-md-6">
+                          <p className="snap-high">Account Type</p>
+                          <p className="snap-nor">{values.BankAccountType}</p>
+                        </div>
+                      </div>
+                      {/* <div className="row">
+                        <div className="col-md-6">
+                          <p className="snap-high">Marital Status</p>
+                          <p className="snap-nor">Unmarried</p>
+                        </div>
+                        <div className="col-md-6">
+                          <p className="snap-high">Nominee</p>
+                          <p className="snap-nor">Rohan Singh</p>
+                        </div>
+                      </div> */}
+                      <div className="row">
+                        <div className="col-md-6">
+                          <p className="snap-high">Date of Birth</p>
+                          <p className="snap-nor">{values.DOB}</p>
+                        </div>
+                        <div className="col-md-6">
+                          <p className="snap-high">Credit Score</p>
+                          <p className="snap-nor">749</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-sm-6 mb-3">
+                  <div className="card h-100">
+                    <div className="card-body">
+                      <h6 className="d-flex align-items-center mb-3">
+                        Recent Activity
+                      </h6>
+                      <table className="table">
+                        <tr>
+                          <th>S.No</th>
+                          <th>Issue Id</th>
+                          <th>Ammount</th>
+                          <th>Status</th>
+                        </tr>
+                        {issuevalues.map((value, index) => (
+                          <tr key={index}>
+                            <td>{index + 1}</td>
+                            <td>{value.IssueId}</td>
+                            <td>{value.Ammount}</td>
+                            <td>{value.Status}</td>
+                          </tr>
+                        ))}
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* <div className="card">
+        <h3 className="text-center">{values.CustomerName}'s Profile</h3>
+        <div className="card-body">
+          <div className="row">
+            <div className="col-md-6">
+              Employee Id: <b>{values.CustomerId}</b>
+            </div>
+            <div className="col-md-6">
+              Personal Mail Id: <b>{state.Username}</b>
+            </div>
+            <div className="col-md-6">
+              date Of Birth: <b>{values.DOB}</b>
+            </div>
+            <div className="col-md-6">
+              date Of account opening: <b>{values.DateAccountOpening}</b>
+            </div>
+            <div className="col-md-6">
+              Permanent Address: <b>{values.CustomerAddress}</b>
+            </div>
+            <div className="col-md-6">
+              City: <b>{values.BankCity}</b>
+            </div>
+            <div className="col-md-6">
+              State: <b>{values.BankState}</b>
+            </div>
+          </div>
+        </div>
+      </div> */}
+    </>
+  );
+};
+
+export default ViewProfileCustComponents;
+
+
+------------------------------------------------------------------------------------------------------------------
+
+
+
+components/css/
+
+
+home.css 
+
+/* body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #86bbd8, #33658a);
+  background: #fff;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../../assets/cc.jpeg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+} */
+
+/* .container-fluid {
+  background: linear-gradient(135deg, #86bbd8, #33658a);
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../../assets/cc.jpeg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+} */
+
+.app-wrapper {
+    background-color: #fff;
+    opacity: 0.88;
+    width: 100%;
+    min-height: 550px;
+    padding: 2px;
+    box-sizing: border-box;
+    border-radius: 5px;
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+      monospace;
+  }
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  a:hover {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.349);
+  }
+  
+  .sidebar {
+    padding: 20%;
+  }
+  
+  .SideLinks {
+    margin-top: 1.2em;
+  }
+  
+  .SideLeft {
+    margin-top: 0.2em;
+  }
+  
+  .SideLeft a {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  
+  .sideRight {
+    margin-top: 0.8em;
+  }
+  
+  .footer {
+    margin-top: 5em;
+  }
+  
+  .navbar-area {
+    -webkit-box-shadow: 0 7px 13px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 7px 13px 0 rgba(0, 0, 0, 0.1);
+  }
+  .navbar-area .luvion-nav .navbar .navbar-collapse {
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+    margin-top: 10px;
+    overflow-y: auto;
+  }
+  .navbar-area .luvion-nav .navbar .navbar-nav {
+    max-height: 60vh;
+    overflow-y: scroll;
+  }
+  .navbar-area .luvion-nav .navbar .navbar-nav::-webkit-scrollbar {
+    width: 7px;
+  }
+  .navbar-area .luvion-nav .navbar .navbar-nav::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  .navbar-area .luvion-nav .navbar .navbar-nav::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  .navbar-area .luvion-nav .navbar .navbar-nav::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  .navbar-area .luvion-nav .navbar .navbar-nav .nav-item {
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+  .navbar-area .luvion-nav .navbar .navbar-nav .nav-item a {
+    font-size: 15px;
+    margin: 0;
+  }
+  .navbar-area .luvion-nav .navbar .navbar-nav .nav-item a i {
+    display: none;
+  }
+  .navbar-area .luvion-nav .navbar .navbar-nav .nav-item .dropdown-menu {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    position: relative;
+    top: 0;
+    opacity: 1;
+    visibility: visible;
+    width: 98%;
+    border: 1px solid #eee;
+    margin-top: 5px;
+  }
+  .navbar-area
+    .luvion-nav
+    .navbar
+    .navbar-nav
+    .nav-item
+    .dropdown-menu
+    li
+    .dropdown-menu,
+  .navbar-area
+    .luvion-nav
+    .navbar
+    .navbar-nav
+    .nav-item
+    .dropdown-menu
+    li
+    .dropdown-menu
+    li
+    .dropdown-menu {
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+    left: 15px;
+    top: 0 !important;
+    width: 90%;
+  }
+  .navbar-area
+    .luvion-nav
+    .navbar
+    .navbar-nav
+    .nav-item
+    .dropdown-menu
+    li
+    a:first-child {
+    margin-left: 0;
+  }
+  .navbar-area .luvion-nav .navbar .others-options {
+    margin-left: 15px;
+    position: absolute;
+    top: 4px;
+    right: 50px;
+  }
+  .navbar-area .luvion-nav .navbar .others-options .login-btn {
+    font-size: 15px;
+  }
+  
+  .sr-only {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  .sr-only-focusable:active,
+  .sr-only-focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+  }
+  
+  .dropdownC {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    background: #f9f9f9;
+    min-width: 250px;
+    min-height: 50px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+    margin-left: 2em;
+  }
+  
+  .reg,
+  .sig {
+    margin-top: 80px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    min-width: 100px;
+    min-height: 50px;
+    font-weight: bold;
+  }
+  
+  /*Navbar*/
+  
+  .navbar-brand {
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  
+  .navbar-brand img {
+    max-width: 50%;
+    max-height: 8em;
+  }
+  
+  /*Main banner styling*/
+  
+  .main-banner-section {
+    height: 600px;
+    background-image: url(../../assets/main-banner2.jpg);
+    background-position: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+  }
+  
+  .main-banner-content {
+    max-width: 100%;
+    position: relative;
+  }
+  
+  .main-banner-content h1 {
+    color: #fff;
+    font-size: 52px;
+    font-weight: 700;
+  }
+  
+  .main-banner-content p {
+    color: #fff;
+    font-family: Raleway, sans-serif;
+    font-size: 18px;
+    max-width: 400px;
+    position: relative;
+    font-weight: 400;
+    text-align: center;
+  }
+  
+  .main-banner-content .btn {
+    position: relative;
+  }
+  
+  .banner-content {
+    position: relative;
+    text-align: center;
+    margin: 20%;
+  }
+  
+  .banner-content h1 {
+    color: #fff;
+    font-size: 52px;
+    font-weight: 700;
+    text-align: center;
+    /*margin-left: 30%;
+      margin-right: 20%;
+      margin-top: 20%;*/
+  }
+  
+  .banner-content p {
+    color: #fff;
+    font-family: Raleway, sans-serif;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 0;
+    font-weight: 400;
+    /* margin-left: 30%;
+      margin-right: 30%;*/
+  }
+  
+  .banner-content .btn {
+    margin-top: 30px;
+  }
+  
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl,
+  .container-xxl {
+    width: 100%;
+    padding-right: var(--bs-gutter-x, 0.75rem);
+    padding-left: var(--bs-gutter-x, 0.75rem);
+    margin-right: auto;
+    margin-left: auto;
+  }
+  
+  @media (min-width: 576px) {
+    .container,
+    .container-sm {
+      max-width: 540px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .container,
+    .container-md,
+    .container-sm {
+      max-width: 720px;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .container,
+    .container-lg,
+    .container-md,
+    .container-sm {
+      max-width: 960px;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .container,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container-xl {
+      max-width: 1140px;
+    }
+  }
+  
+  @media (min-width: 1400px) {
+    .container,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container-xl,
+    .container-xxl {
+      max-width: 1320px;
+    }
+  }
+  
+  .row {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(var(--bs-gutter-y) * -1);
+    margin-right: calc(var(--bs-gutter-x) / -2);
+    margin-left: calc(var(--bs-gutter-x) / -2);
+  }
+  
+  /*Featured Box area css*/
+  
+  .featured-boxes-area {
+    position: relative;
+    z-index: 1;
+    margin-top: -100px;
+  }
+  
+  .featured-boxes-inner {
+    background-color: #fff;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .featured-boxes-inner .col-lg-3 {
+    border-right: 1px solid #eee;
+  }
+  
+  .featured-boxes-inner .col-lg-3:last-child {
+    border-right: none;
+  }
+  
+  .single-featured-box {
+    text-align: center;
+    position: relative;
+    padding: 115px 25px 40px;
+    overflow: hidden;
+  }
+  
+  .single-featured-box .icon {
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    color: #ee0979;
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    -webkit-transform: translate(-50%);
+    transform: translate(-50%);
+    margin-top: -12px;
+  }
+  
+  .single-featured-box .icon i:before {
+    font-size: 55px;
+  }
+  
+  .single-featured-box .icon.color-fb7756 {
+    color: #fb7756;
+  }
+  
+  .single-featured-box .icon.color-facd60 {
+    color: #facd60;
+  }
+  
+  .single-featured-box .icon.color-1ac0c6 {
+    color: #1ac0c6;
+  }
+  
+  .single-featured-box h3 {
+    font-size: 20px;
+  }
+  
+  .single-featured-box h3,
+  .single-featured-box p {
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    margin-bottom: 0;
+  }
+  
+  .single-featured-box p {
+    font-size: 15px;
+    margin-top: 12px;
+  }
+  
+  .single-featured-box .read-more-btn {
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: 0.6;
+    transition: 0.6;
+    color: #ee0979;
+    font-size: 15px;
+    font-weight: 400;
+  }
+  
+  .single-featured-box .read-more-btn:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 1px;
+    width: 0;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    height: 1px;
+    background: -webkit-gradient(
+      linear,
+      left top,
+      right top,
+      from(#ee0979),
+      to(#ff6a00)
+    );
+    background: -webkit-linear-gradient(left, #ee0979, #ff6a00);
+    background: linear-gradient(90deg, #ee0979, #ff6a00);
+  }
+  
+  .single-featured-box .read-more-btn:hover:before {
+    width: 100%;
+  }
+  
+  .single-featured-box:hover .icon {
+    top: 23px;
+    -webkit-animation: iconTop 0.4s ease-in-out;
+    animation: iconTop 0.4s ease-in-out;
+  }
+  
+  .single-featured-box:hover h3,
+  .single-featured-box:hover p {
+    -webkit-transform: translateY(-20px);
+    transform: translateY(-20px);
+  }
+  
+  .single-featured-box:hover .read-more-btn {
+    opacity: 1;
+    visibility: visible;
+    bottom: 23px;
+  }
+  
+  @-webkit-keyframes iconTop {
+    0% {
+      -webkit-transform: translate(-50%);
+      transform: translate(-50%);
+    }
+    25% {
+      opacity: 0;
+      -webkit-transform: translate(-50%, -70%);
+      transform: translate(-50%, -70%);
+    }
+    50% {
+      opacity: 0;
+      -webkit-transform: translate(-50%, -40%);
+      transform: translate(-50%, -40%);
+    }
+    to {
+      opacity: 1;
+      -webkit-transform: translate(-50%);
+      transform: translate(-50%);
+    }
+  }
+  
+  @keyframes iconTop {
+    0% {
+      -webkit-transform: translate(-50%);
+      transform: translate(-50%);
+    }
+    25% {
+      opacity: 0;
+      -webkit-transform: translate(-50%, -70%);
+      transform: translate(-50%, -70%);
+    }
+    50% {
+      opacity: 0;
+      -webkit-transform: translate(-50%, -40%);
+      transform: translate(-50%, -40%);
+    }
+    to {
+      opacity: 1;
+      -webkit-transform: translate(-50%);
+      transform: translate(-50%);
+    }
+  }
+  
+  /*How it works section css*/
+  
+  .section-title {
+    text-align: center;
+    max-width: 720px;
+    margin-top: 10em;
+    margin: -9px 10em 50px;
+  }
+  
+  .section-title h2 {
+    margin-bottom: 0;
+    font-size: 40px;
+  }
+  
+  .section-title .bar {
+    height: 5px;
+    width: 90px;
+    background: #cdf1d8;
+    margin: 15px auto 20px;
+    position: relative;
+    border-radius: 30px;
+  }
+  
+  .section-title .bar:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -2.7px;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background: #44ce6f;
+    -webkit-animation-duration: 3s;
+    animation-duration: 3s;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-name: MOVE-BG;
+    animation-name: MOVE-BG;
+  }
+  
+  .how-it-works-area {
+    padding-bottom: 50px;
+    margin-top: 2.5em;
+  }
+  
+  .single-how-it-works {
+    text-align: center;
+    background-color: #fff;
+    margin-bottom: 30px;
+    -webkit-box-shadow: 0 7px 20px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.03);
+    padding: 35px 25px;
+    border-radius: 5px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    border: 1px solid #efefef;
+  }
+  
+  .single-how-it-works img {
+    display: inline-block;
+    margin-bottom: 30px;
+  }
+  
+  .single-how-it-works h3 {
+    margin-bottom: 0;
+    font-size: 20px;
+  }
+  
+  .single-how-it-works p {
+    margin-top: 12px;
+    margin-bottom: 0;
+  }
+  
+  .single-how-it-works:hover {
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+    -webkit-box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  /*introduction section css*/
+  .introduction-area {
+    position: relative;
+    z-index: 1;
+    margin-top: 4em;
+  }
+  
+  .introduction-area .container-f {
+    max-width: 1920px;
+  }
+  
+  .introduction-area .container-f {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+  .overview-box {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center !important;
+  }
+  
+  .overview-box .overview-content {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  
+  .overview-box .overview-content .content {
+    max-width: 650px;
+    padding-left: 50px;
+  }
+  
+  .overview-box .overview-content .content .sub-title {
+    display: block;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    color: #ee0979;
+    font-size: 12.5px;
+    font-family: Raleway, sans-serif;
+    font-weight: 500;
+  }
+  
+  .overview-box .overview-content .content.left-content {
+    margin-left: auto;
+    padding-right: 30px;
+    padding-left: 0;
+  }
+  
+  .overview-box .overview-content .content h2 {
+    margin-bottom: 0;
+    font-size: 40px;
+  }
+  
+  .overview-box .overview-content .content .bar {
+    height: 5px;
+    width: 90px;
+    background: #cdf1d8;
+    margin: 20px 0 25px;
+    position: relative;
+    border-radius: 30px;
+  }
+  
+  .overview-box .overview-content .content .bar:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -2.7px;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background: #44ce6f;
+    -webkit-animation-duration: 3s;
+    animation-duration: 3s;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-name: MOVE-BG;
+    animation-name: MOVE-BG;
+  }
+  
+  .overview-box .overview-content .content.left-content {
+    margin-left: auto;
+    padding-right: 30px;
+    padding-left: 60px;
+  }
+  
+  .overview-box .overview-content .content .services-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center !important;
+    padding-left: 0;
+    list-style-type: none;
+    margin: -5px -15px 0;
+  }
+  
+  .overview-box .overview-content .content .services-list li {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding-top: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  .overview-box .overview-content .content .services-list li span {
+    display: block;
+    position: relative;
+    background-color: #fff;
+    -webkit-box-shadow: 0 2px 48px 0 rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 48px 0 rgba(0, 0, 0, 0.08);
+    color: #57647c;
+    z-index: 1;
+    border-radius: 5px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    padding: 10px 15px 10px 35px;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  
+  .overview-box .overview-content .content .services-list li span i {
+    position: absolute;
+    left: 15px;
+    top: 9px;
+    color: #ee0979;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }
+  
+  .overview-box .overview-content .content .services-list li span i:before {
+    font-size: 12px;
+  }
+  
+  .overview-box .overview-content .content .services-list li span:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    width: 0;
+    height: 100%;
+    border-radius: 5px;
+    background: -webkit-gradient(
+      linear,
+      left top,
+      right top,
+      from(#ee0979),
+      to(#ff6a00)
+    );
+    background: -webkit-linear-gradient(left, #ee0979, #ff6a00);
+    background: linear-gradient(90deg, #ee0979, #ff6a00);
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }
+  
+  .overview-box .overview-content .content .services-list li span:hover,
+  .overview-box .overview-content .content .services-list li span:hover i {
+    color: #fff;
+  }
+  
+  .overview-box .overview-content .content .services-list li span:hover:before {
+    width: 100%;
+  }
+  
+  .overview-box .overview-content .content .features-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center !important;
+    padding-left: 0;
+    list-style-type: none;
+    margin: -5px -15px 0;
+  }
+  
+  .overview-box .overview-content .content .features-list li {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  .overview-box .overview-content .content .features-list li span {
+    display: block;
+    color: #57647c;
+    position: relative;
+    padding-left: 31px;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  
+  .overview-box .overview-content .content .features-list li span i {
+    position: absolute;
+    left: 0;
+    top: -1px;
+    color: #fff;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    width: 22px;
+    height: 20px;
+    text-align: center;
+    line-height: 18px;
+    background: -webkit-linear-gradient(315deg, #23bdb8, #43e794);
+    background: linear-gradient(135deg, #23bdb8, #43e794);
+    border-radius: 3px;
+  }
+  
+  .overview-box .overview-content .content .features-list li span i:before {
+    font-size: 10px;
+  }
+  
+  .overview-box .overview-content .content .btn {
+    margin-top: 35px;
+  }
+  
+  .overview-box .overview-image {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  
+  .overview-box .overview-image .image {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  .overview-box .overview-image .image {
+    max-width: 100%;
+    margin: auto;
+  }
+  
+  img {
+    max-width: 100%;
+  }
+  
+  .overview-box .overview-image .image .circle-img {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    z-index: -1;
+    right: 0;
+    margin: 0 auto;
+  }
+  
+  .overview-box .overview-image .image .circle-img img {
+    -webkit-animation-name: rotateMe;
+    animation-name: rotateMe;
+    -webkit-animation-duration: 35s;
+    animation-duration: 35s;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+  }
+  
+  @-webkit-keyframes MOVE-BG {
+    0% {
+      -webkit-transform: translateX(0);
+      transform: translateX(0);
+    }
+    to {
+      -webkit-transform: translateX(88px);
+      transform: translateX(88px);
+    }
+  }
+  
+  @keyframes MOVE-BG {
+    0% {
+      -webkit-transform: translateX(0);
+      transform: translateX(0);
+    }
+    to {
+      -webkit-transform: translateX(88px);
+      transform: translateX(88px);
+    }
+  }
+  
+  @-webkit-keyframes rotateMe {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(1turn);
+      transform: rotate(1turn);
+    }
+  }
+  
+  @keyframes rotateMe {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(1turn);
+      transform: rotate(1turn);
+    }
+  }
+  
+  /*pt modification*/
+  
+  .ptb-70 {
+    padding-bottom: 80px;
+  }
+  
+  .ptb-70 {
+    padding-top: 80px;
+  }
+  
+  /*Team CSS*/
+  
+  .single-team-member {
+    -webkit-box-shadow: 0 5px 40px 0 rgba(0, 0, 0, 0.07);
+    box-shadow: 0 5px 40px 0 rgba(0, 0, 0, 0.07);
+    text-align: center;
+    border-radius: 5px;
+    margin-bottom: 30px;
+  }
+  
+  .single-team-member .member-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+  }
+  
+  .single-team-member .member-image img {
+    border-radius: 5px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }
+  
+  .single-team-member .member-image .social {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    bottom: 0;
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0 auto;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }
+  
+  .single-team-member .member-image .social li {
+    display: inline-block;
+  }
+  
+  .single-team-member .member-image .social li a {
+    margin: 0 2px;
+    display: inline-block;
+  }
+  
+  .single-team-member .member-image .social li a i {
+    background-color: #ee0979;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 13px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }
+  
+  .single-team-member .member-image .social li a i:hover {
+    background: #fff;
+    color: #ee0979;
+  }
+  
+  .single-team-member .member-content {
+    padding: 25px;
+  }
+  
+  .single-team-member .member-content h3 {
+    margin-bottom: 0;
+    font-size: 23px;
+    color: #f9f9f9;
+  }
+  
+  .single-team-member .member-content span {
+    display: block;
+    font-size: 14px;
+    margin-top: 5px;
+    color: #5de2af;
+  }
+  
+  .single-team-member .member-content p {
+    font-size: 15px;
+    margin-bottom: 0;
+    margin-top: 10px;
+  }
+  
+  .single-team-member:hover .member-image img {
+    -webkit-transform: scale(1.2) rotate(4deg);
+    transform: scale(1.2) rotate(4deg);
+  }
+  
+  .single-team-member:hover .member-image .social {
+    bottom: 20px;
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  /*Login Page*/
+  
+  .login-area {
+    background: linear-gradient(135deg, #86bbd8, #33658a);
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../../assets/cc.jpeg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+  
+  .page-title {
+    font-size: 3em;
+  }
+  
+  .checkbox-inline + .checkbox-inline,
+  .radio-inline + .radio-inline {
+    margin-top: 6px;
+  }
+  
+  .switcher {
+    margin-bottom: 70px;
+  }
+  ul.switcher li {
+    list-style-type: none;
+    width: 50%;
+    position: absolute;
+    top: 0;
+  }
+  
+  .login-container-wrapper {
+    max-width: 400px;
+    margin: 2% auto 5%;
+    padding: 40px;
+    box-sizing: border-box;
+  
+    position: relative;
+    box-shadow: 0px 30px 60px -5px #000;
+    background-size: cover;
+    background-blend-mode: saturation;
+  }
+  
+  .login-container-wrapper li {
+    text-align: center;
+    padding: 0 15px;
+    background-color: #283443;
+    height: 50px;
+    line-height: 50px;
+    box-shadow: inset 0 -2px 0 0 #ccc;
+    cursor: pointer;
+  }
+  .login-container-wrapper li a {
+    color: #fff;
+  }
+  .login-container-wrapper li a:hover {
+    color: #ccc;
+    text-decoration: none;
+  }
+  
+  .login-container-wrapper li a:active,
+  .login-container-wrapper li a:focus {
+    color: #fff;
+    text-decoration: none;
+  }
+  .login-container-wrapper li.active {
+    background-color: transparent;
+    box-shadow: none;
+  }
+  .login-container-wrapper li.active a {
+    border-bottom: 2px solid #fff;
+    padding-bottom: 5px;
+  }
+  
+  .login input:focus + .fa {
+    color: #25a08d;
+  }
+  .login-form .form-group {
+    margin-right: 0;
+    margin-left: 0;
+    margin-bottom: 1em;
+  }
+  
+  .login-form i {
+    position: absolute;
+    top: 0;
+    left: 19px;
+    line-height: 52px;
+    color: rgba(40, 52, 67, 1);
+    z-index: 100;
+    font-size: 16px;
+  }
+  
+  .login-form .input-lg {
+    font-size: 16px;
+    height: 52px;
+    padding: 10px 25px;
+    border-radius: 0;
+  }
+  
+  .login input[type="email"],
+  .login input[type="password"],
+  .login input:focus {
+    background-color: rgba(40, 52, 67, 0.75);
+    border: 0px solid #4a525f;
+    color: #eee;
+    border-left: 45px solid #93a5ab;
+    border-radius: 40px;
+  }
+  
+  .login input:focus {
+    border-left: 45px solid #eee;
+  }
+  
+  input:-webkit-autofill,
+  textarea:-webkit-autofill,
+  select:-webkit-autofill {
+    background-color: rgba(40, 52, 67, 0.75) !important;
+    background-image: none;
+    color: rgb(0, 0, 0);
+    border-color: #faffbd;
+  }
+  
+  .login .checkbox label,
+  .login .checkbox a {
+    color: #ddd;
+    vertical-align: top;
+  }
+  input[type="checkbox"]:checked + label::before,
+  .checkbox-success input[type="radio"]:checked + label::before {
+    background-color: #25a08d !important;
+  }
+  .btn-success {
+    background-color: #25a08d;
+    background-image: none;
+    padding: 8px 50px;
+    margin-top: 20px;
+    border-radius: 40px;
+    border: 1px solid #25a08d;
+    -webkit-transition: all ease 0.8s;
+    -moz-transition: all ease 0.8s;
+    transition: all ease 0.8s;
+  }
+  
+  .btn-success:focus,
+  .btn-success:hover,
+  .btn-success.active,
+  .btn-success.active:hover,
+  .btn-success:active:hover,
+  .btn-success:active:focus,
+  .btn-success:active {
+    background-color: #25a08d;
+    border-color: #25a08d;
+    box-shadow: 0px 5px 35px -5px #25a08d;
+    text-shadow: 0 0 8px #fff;
+    color: #fff;
+    outline: none;
+  }
+  
+  /*EXTRS CSS*/
+  
+  .nav-sidebar {
+    position: fixed;
+    height: 100%;
+    width: 240px;
+    background: #0a2558;
+    transition: all 0.5s ease;
+  }
+  
+  .nav-sidebar.active {
+    width: 60px;
+  }
+  .nav-sidebar .logo-details {
+    height: 80px;
+    display: flex;
+    align-items: center;
+  }
+  .nav-sidebar .logo-details i {
+    font-size: 28px;
+    font-weight: 500;
+    color: #fff;
+    min-width: 60px;
+    text-align: center;
+  }
+  
+  .nav-sidebar .logo-details .logo_name {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 500;
+  }
+  .nav-sidebar .nav-links {
+    margin-top: 10px;
+  }
+  .nav-sidebar .nav-links li {
+    position: relative;
+    list-style: none;
+    height: 50px;
+  }
+  .nav-sidebar .nav-links li a {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.4s ease;
+  }
+  .nav-sidebar .nav-links li a.active {
+    background: #081d45;
+  }
+  .nav-sidebar .nav-links li a:hover {
+    background: #081d45;
+  }
+  .nav-sidebar .nav-links li i {
+    min-width: 60px;
+    text-align: center;
+    font-size: 18px;
+    color: #fff;
+  }
+  .nav-sidebar .nav-links li a .links_name {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+  .nav-sidebar .nav-links .log_out {
+    bottom: 0;
+    width: 100%;
+  }
+  
+  .home-section {
+    position: relative;
+    min-height: 20vh;
+    width: calc(100% - 265px);
+    left: 265px;
+    transition: all 0.5s ease;
+  }
+  
+  .home-section2 {
+    margin-left: 15em;
+  }
+  
+  .nav-sidebar.active ~ .home-section {
+    width: calc(100% - 60px);
+    left: 60px;
+  }
+  .home-section nav {
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    width: calc(100% - 265px);
+    left: 265px;
+    z-index: 100;
+    padding: 0 20px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease;
+  }
+  .nav-sidebar.active ~ .home-section nav {
+    left: 60px;
+    width: calc(100% - 60px);
+  }
+  .home-section nav .sidebar-button {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 500;
+  }
+  
+  .home section nav .sidebar-button i {
+    font-size: 35px;
+    margin-right: 10px;
+  }
+  .home-section nav .search-box {
+    position: relative;
+    height: 50px;
+    max-width: 550px;
+    width: 100%;
+    margin: 0 20px;
+  }
+  nav .search-box input {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    background: #f5f6fa;
+    border: 2px solid #efeef1;
+    border-radius: 6px;
+    font-size: 18px;
+    padding: 0 15px;
+  }
+  nav .search-box .bx-search {
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    background: #2697ff;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 4px;
+    line-height: 40px;
+    text-align: center;
+    color: #fff;
+    font-size: 22px;
+    transition: all 0.4 ease;
+  }
+  .home-section nav .profile-details {
+    display: flex;
+    align-items: center;
+    background: #f5f6fa;
+    border: 2px solid #efeef1;
+    border-radius: 6px;
+    height: 50px;
+    min-width: 190px;
+    padding: 0 15px 0 2px;
+  }
+  nav .profile-details img {
+    height: 40px;
+    width: 40px;
+    border-radius: 6px;
+    object-fit: cover;
+  }
+  nav .profile-details .admin_name {
+    font-size: 15px;
+    font-weight: 500;
+    color: #333;
+    margin: 0 10px;
+    white-space: nowrap;
+  }
+  nav .profile-details i {
+    font-size: 25px;
+    color: #333;
+  }
+  .home-section .home-content {
+    position: relative;
+    padding-top: 104px;
+  }
+  
+  .home-content .overview-boxes {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 20px;
+    margin-bottom: 26px;
+  }
+  .overview-boxes .box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% / 4 - 15px);
+    background: #fff;
+    padding: 15px 14px;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+  .overview-boxes .box-topic {
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .home-content .box .number {
+    display: inline-block;
+    font-size: 35px;
+    margin-top: -6px;
+    font-weight: 500;
+  }
+  .home-content .box .indicator {
+    display: flex;
+    align-items: center;
+  }
+  .home-content .box .indicator i {
+    height: 20px;
+    width: 20px;
+    background: #8fdacb;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 20px;
+    margin-right: 5px;
+  }
+  .box .indicator i.down {
+    background: #e87d88;
+  }
+  .home-content .box .indicator .text {
+    font-size: 12px;
+  }
+  .home-content .box .cart {
+    display: inline-block;
+    font-size: 32px;
+    height: 50px;
+    width: 50px;
+    background: #cce5ff;
+    line-height: 50px;
+    text-align: center;
+    color: #66b0ff;
+    border-radius: 12px;
+    margin: -15px 0 0 6px;
+  }
+  .home-content .box .cart.two {
+    color: #2bd47d;
+    background: #c0f2d8;
+  }
+  .home-content .box .cart.three {
+    color: #ffc233;
+    background: #ffe8b3;
+  }
+  .home-content .box .cart.four {
+    color: #e05260;
+    background: #f7d4d7;
+  }
+  .home-content .total-order {
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .home-content .sales-boxes {
+    display: flex;
+    justify-content: space-between;
+    /* padding: 0 20px; */
+  }
+  
+  /* left box */
+  .home-content .sales-boxes .recent-sales {
+    width: 100%;
+    background: #fff;
+    padding: 20px 30px;
+  }
+  .home-content .sales-boxes .sales-details {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .sales-boxes .box .title {
+    font-size: 24px;
+    font-weight: 500;
+    /* margin-bottom: 10px; */
+  }
+  .sales-boxes .sales-details li.topic {
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .sales-boxes .sales-details li {
+    list-style: none;
+    margin: 8px 0;
+  }
+  .sales-boxes .sales-details li a {
+    font-size: 18px;
+    color: #333;
+    font-size: 400;
+    text-decoration: none;
+  }
+  .sales-boxes .box .button {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .sales-boxes .box .button a {
+    color: #fff;
+    background: #0a2558;
+    padding: 4px 12px;
+    font-size: 15px;
+    font-weight: 400;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  .sales-boxes .box .button a:hover {
+    background: #0d3073;
+  }
+  
+  /* Right box */
+  .home-content .sales-boxes {
+    width: 100%;
+    background: #fff;
+    padding: 20px 30px;
+  }
+  .sales-boxes .top-sales li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+  }
+  .sales-boxes .top-sales li a img {
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-right: 10px;
+    background: #333;
+  }
+  .sales-boxes .top-sales li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  .sales-boxes .top-sales li .product,
+  .price {
+    font-size: 17px;
+    font-weight: 400;
+    color: #333;
+  }
+  
+  .center-card {
+    box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2);
+    padding: 1.5em;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+  }
+  
+  .xyz {
+    height: 50em;
+    width: 100%;
+    background-color: #f4f4f4;
+  }
+  
+  .main-body {
+    padding: 15px;
+  }
+  .card {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  }
+  
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+  }
+  
+  .card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1rem;
+  }
+  
+  .gutters-sm {
+    margin-right: -8px;
+    margin-left: -8px;
+  }
+  
+  .gutters-sm > .col,
+  .gutters-sm > [class*="col-"] {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+  .mb-3,
+  .my-3 {
+    margin-bottom: 1rem !important;
+  }
+  
+  .bg-gray-300 {
+    background-color: #e2e8f0;
+  }
+  .h-100 {
+    height: 100% !important;
+  }
+  .shadow-none {
+    box-shadow: none !important;
+  }
+  
+  .snap-high {
+    font-size: 1.25em;
+    font-weight: bold;
+    text-align: center;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+      "Lucida Sans", Arial, sans-serif;
+  }
+  
+  .snap-nor {
+    font-size: 1em;
+    font-weight: 400;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+  }
+  
+  .track {
+    position: relative;
+    background-color: #ddd;
+    height: 7px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 60px;
+    margin-top: 50px;
+  }
+  
+  .track .step {
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    width: 25%;
+    margin-top: -18px;
+    text-align: center;
+    position: relative;
+  }
+  
+  .track .step.active:before {
+    background: #ff5722;
+  }
+  
+  .track .step::before {
+    height: 7px;
+    position: absolute;
+    content: "";
+    width: 100%;
+    left: 0;
+    top: 18px;
+  }
+  
+  .track .step.active .icon {
+    background: #ee5435;
+    color: #fff;
+  }
+  
+  .track .icon {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+    border-radius: 100%;
+    background: #ddd;
+  }
+  
+  .track .step.active .text {
+    font-weight: 400;
+    color: #000;
+  }
+  
+  .track .text {
+    display: block;
+    margin-top: 7px;
+  }
+  
+  .form-track {
+    position: relative;
+  }
+  
+  .form-track .fa-search {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #9ca3af;
+  }
+  
+  .form-track span {
+    position: absolute;
+    right: 17px;
+    top: 13px;
+    padding: 2px;
+    border-left: 1px solid #d1d5db;
+  }
+  
+  .left-pan {
+    padding-left: 7px;
+  }
+  
+  .left-pan i {
+    padding-left: 10px;
+  }
+  .track-search {
+    margin-bottom: 1em;
+  }
+  
+  .form-track .form-input {
+    height: 55px;
+    text-indent: 33px;
+    border-radius: 10px;
+  }
+  
+  .form-track .form-input:focus {
+    box-shadow: none;
+    border: none;
+  }
+  
+  /*Add employee css*/
+  
+  @media (min-width: 1025px) {
+    .h-custom {
+      height: 100vh !important;
+    }
+  }
+  .card-registration .select-input.form-control[readonly]:not([disabled]) {
+    font-size: 1rem;
+    line-height: 2.15;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+  }
+  .card-registration .select-arrow {
+    top: 13px;
+  }
+  
+  .gradient-custom-2 {
+    /* fallback for old browsers */
+    background: #a1c4fd;
+  
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(
+      to right,
+      rgba(161, 196, 253, 1),
+      rgba(194, 233, 251, 1)
+    );
+  
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(
+      to right,
+      rgba(161, 196, 253, 1),
+      rgba(194, 233, 251, 1)
+    );
+  }
+  
+  .bg-indigo {
+    background-color: #4835d4;
+  }
+  @media (min-width: 992px) {
+    .card-registration-2 .bg-indigo {
+      border-top-right-radius: 15px;
+      border-bottom-right-radius: 15px;
+    }
+  }
+  @media (max-width: 991px) {
+    .card-registration-2 .bg-indigo {
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+    }
+  }
+
+
+  sidebar.css
+
+  .side {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 15%;
+    top: 52px;
+    background-color: #fff;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    text-align: center;
+    box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px,
+      rgb(0 0 0 / 30%) 0px 1px 3px -1px;
+  }
+  
+  .side li a {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+  
+  .side li a.active {
+    background-color: #04aa6d;
+    color: white;
+  }
+  
+  .side li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  }
+
+  
+  topbar.css
+
+  .topB {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: inset 0 -10px 3px -10px grey;
+  }
+  
+  .topB li {
+    float: left;
+    border-right: 1px solid #bbb;
+  }
+  
+  .topB li:last-child {
+    border-right: none;
+  }
+  
+  .topB li a {
+    display: block;
+    color: rgb(224, 80, 80);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  .topB li a:hover:not(.active) {
+    background-color: #111;
+  }
+  
+  .active {
+    background-color: rgba(185, 151, 151, 0.301);
+  }
+  
+
+
+
+
+  
+
+
+

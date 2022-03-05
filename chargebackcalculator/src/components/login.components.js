@@ -1,13 +1,14 @@
 import axios from "axios";
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
 const LoginComponents = () => {
   const state = JSON.parse(localStorage.getItem("usertype"));
   console.log(state.userTypeSelection);
   const [values, setValues] = useState({});
-
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
@@ -17,11 +18,20 @@ const LoginComponents = () => {
       IsProfileSet: "false",
     };
     const finalData = Object.assign(xdata, x);
-    axios.post(baseUrl + "/userHandle/register", finalData).then((r) => {
-      console.log(r);
-      console.log(r.UserDetails);
-      alert(r.data.UserDetails.UserId);
-    });
+    axios
+      .post(baseUrl + "/userHandle/register", finalData)
+      .then((r) => {
+        if (!r.data.isSuccess) {
+          alert(r.data.message);
+          return;
+        }
+        console.log(r);
+        alert(r.data.UserDetails.UserId);
+        navigate("/signin");
+      })
+      .catch((e) => {
+        alert("Something went wrong");
+      });
   };
 
   const onChange = (e) => {
@@ -73,7 +83,7 @@ const LoginComponents = () => {
                     </div>
                     <div className="form-group d-flex justify-content-center">
                       <button className="btn btn-success btn-lg btn-block">
-                        Login
+                        Sign Up
                       </button>
                     </div>
                   </form>

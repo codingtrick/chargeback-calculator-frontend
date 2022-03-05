@@ -4,25 +4,32 @@ import axios from "axios";
 import UserInput from "./UserInput.components";
 const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
-const handleSubmit = (e) => {
-  e.preventDefault();
-  const data = new FormData(e.target);
-  console.log(Object.fromEntries(data.entries()));
-  axios
-    .post(baseUrl + "/issue", Object.fromEntries(data.entries()))
-    .then((r) => {
-      console.log("Done with Issue" + r);
-    });
-};
-
 const IssueComponents = () => {
-  const [values, setValues] = useState({});
+  const initialValue = {
+    descriptions: "",
+    IssueDateTime: "",
+    ammount: "",
+    TransitionType: "",
+    TransitionMode: "",
+  };
+  const [values, setValues] = useState(initialValue);
 
   const state = JSON.parse(localStorage.getItem("login"));
   console.log(state);
 
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    console.log(Object.fromEntries(data.entries()));
+    axios
+      .post(baseUrl + "/issue", Object.fromEntries(data.entries()))
+      .then((r) => {
+        alert("issue submitted");
+        setValues(initialValue);
+      });
   };
 
   const loginData = JSON.parse(localStorage.getItem("login"));
@@ -109,7 +116,7 @@ const IssueComponents = () => {
         </div>
       </div>
       <div className="container" style={{ display: "flex" }}>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="formSubmitted">
           <div className="card" style={{ padding: "10px" }}>
             <h1 className="text-center">Issue Component</h1>
             <div className="row">
@@ -118,7 +125,7 @@ const IssueComponents = () => {
                   {input.label}
                   <UserInput
                     {...input}
-                    value={values[input.name] || input.value}
+                    value={input.value ? input.value : values[input.name]}
                     onChange={(e) => onChange(e)}
                   />
                 </div>

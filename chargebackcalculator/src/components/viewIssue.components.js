@@ -42,15 +42,23 @@ const Employee = () => {
   );
 };
 const Customer = () => {
-  const CustomerId = JSON.parse(localStorage.getItem("login")).UserId;
   useEffect(() => {
     loadData();
+    loadCustomer();
   }, []);
+  const CustomerId = JSON.parse(localStorage.getItem("login")).UserId;
+
   const [values, setValues] = useState([]);
   const loadData = async () => {
     const res = await axios.get(baseUrl + "/issue?customerid=" + CustomerId);
     console.log(res.data);
     setValues(res.data);
+  };
+  const [nameValues, namesetValues] = useState([]);
+  const loadCustomer = async () => {
+    const res = await axios.get(baseUrl + "/customer/" + CustomerId);
+    console.log(res.data);
+    namesetValues(res.data);
   };
   return (
     <>
@@ -68,15 +76,12 @@ const Customer = () => {
                       width="150"
                     ></img>
                     <div className="mt-3">
-                      <h4>Himanshu Gupta</h4>
+                      <h4>{nameValues.CustomerName}</h4>
                       <p className="text-secondary mb-1">
-                        <b>Cust Id:</b> XXX88
+                        <b>Cust Id:</b> {nameValues.CustomerId}
                       </p>
                       <p className="text-secondary mb-1">
-                        <b>Acc Type:</b> Savings
-                      </p>
-                      <p className="text-muted font-size-sm">
-                        <b>Address:</b> Bay Area, San Francisco, CA
+                        <b>Acc Type:</b> {nameValues.BankAccountType}
                       </p>
                     </div>
                   </div>
